@@ -5,13 +5,13 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ToyProject.user.service.UserService;
 
 @Controller
-@RequestMapping("/main/*")
 public class Main {
 	//Field
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -24,6 +24,10 @@ public class Main {
 		LOGGER.debug("\nConstructor :: "+this.getClass()+"\n");
 	}
 	
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
 	//Method
 	@RequestMapping(value="mainPage", method=RequestMethod.GET)
 	public String mainPage() {
