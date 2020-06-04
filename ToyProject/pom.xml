@@ -42,10 +42,15 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>	
+		<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 -->
+		<!-- <dependency>
 			<groupId>com.oracle.ojdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+			<version>19.3.0.0</version>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -72,7 +77,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 	</dependencies>
 
 	<build>
