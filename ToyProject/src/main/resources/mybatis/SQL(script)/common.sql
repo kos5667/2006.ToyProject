@@ -1,37 +1,48 @@
-DROP TABLE USERS;	
 
 CREATE TABLE COMM001
 (
 
-	CODE	VARCHAR2(4)		NOT NULL,
-	CATEGORY VARCHAR2(20) 	NOT NULL,	
-	CONTENT	VARCHAR2(20)	NOT NULL,
-	CONSTRAINT "COMM_PK" PRIMARY KEY ("CODE"));
+	CODE	VARCHAR(4)		NOT NULL,
+	CATEGORY VARCHAR(20) 	NOT NULL,	
+	CONTENT	VARCHAR(20)	NOT NULL,
+	CONSTRAINT COMM_PK PRIMARY KEY (CODE));
+
 
 
 CREATE TABLE USERS 
 (       
-    USER_NO     NUMBER(10)      NOT NULL, -- 회원고유번호
-    USER_ID     VARCHAR2(50)    NOT NULL, -- 아이디
-    USER_PW     VARCHAR2(6)     NOT NULL, -- 비밀번호
-    USER_NAME   VARCHAR2(20)    NOT NULL, -- 이름
-    SEX         CHAR(1)         NOT NULL, -- 성별
-    BIRTH       VARCHAR2(10)    NOT NULL, -- 생년월일
-    EMAIL       VARCHAR2(20)    NOT NULL, -- 이메일
-    PHONE_NO    VARCHAR2(20)    NOT NULL, -- 핸드폰번호
-    USER_ZCODE  VARCHAR2(20)    NOT NULL, -- 우편번호?
-    ADDR1       VARCHAR2(50)    NOT NULL, -- 주소상세1 API 확인 필요
-    ADDR2       VARCHAR2(50)    NOT NULL, -- 주소상세2
+    USER_NO     INTEGER(10)      NOT NULL, -- 회원고유번호
+    USER_ID     VARCHAR(50)    NOT NULL, -- 아이디
+    USER_PW     VARCHAR(6)     NOT NULL, -- 비밀번호
+    USER_NAME   VARCHAR(20)    NOT NULL, -- 이름
+         SEX CHAR(1) NOT NULL,
+    BIRTH       VARCHAR(10)    NOT NULL, -- 생년월일
+    EMAIL       VARCHAR(20)    NOT NULL, -- 이메일
+    PHONE_NO    VARCHAR(20)    NOT NULL, -- 핸드폰번호
+    USER_ZCODE  VARCHAR(20)    NOT NULL, -- 우편번호?
+    ADDR1       VARCHAR(50)    NOT NULL, -- 주소상세1 API 확인 필요
+    ADDR2       VARCHAR(50)    NOT NULL, -- 주소상세2
     CREATEDATE  DATE            NOT NULL, -- 가입날짜
-    UPDATEDATE  DATE            ,         -- 업데이트 날짜? 
+    UPDATEDATE  DATE            NOT NULL,         -- 업데이트 날짜? 
     LASTLOGIN   DATE            NOT NULL, -- 마지막 접속 날짜
     USER_USE    CHAR(1)         NOT NULL, -- 아이디 사용 여부
-    CART        VARCHAR2(50)    ,         -- 장바구니
-    CODE        VARCHAR2(4)     NOT NULL, -- 권한
+    CART        VARCHAR(50)    ,         -- 장바구니
+    CODE        VARCHAR(4)     NOT NULL, -- 권한
     
      CONSTRAINT USER_PK PRIMARY KEY (USER_NO,USER_ID),
      CONSTRAINT ROLE_CODE FOREIGN KEY(CODE) REFERENCES COMM001(CODE)
 ); 
+
+
+
+
+
+
+
+
+
+
+
 	
 COMMENT ON COLUMN USERS.USER_NO 	IS '회원고유번호';
 COMMENT ON COLUMN USERS.USER_ID 	IS '아이디';
