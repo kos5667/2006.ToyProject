@@ -1,67 +1,247 @@
 
+
+-- 유저 'TP'로 로그인 후 생성
+
+-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+-- drop table comm001;
 CREATE TABLE COMM001
 (
-
-	CODE	VARCHAR(4)		NOT NULL,
-	CATEGORY VARCHAR(20) 	NOT NULL,	
-	CONTENT	VARCHAR(20)	,
-	CONSTRAINT COMM_PK PRIMARY KEY (CODE));
-
-
-
-CREATE TABLE USERS 
-(       
-    USER_NO     INTEGER(10)      NOT NULL, -- 회원고유번호
-    USER_ID     VARCHAR(50)    NOT NULL, -- 아이디
-    USER_PW     VARCHAR(6)     NOT NULL, -- 비밀번호
-    USER_NAME   VARCHAR(20)    NOT NULL, -- 이름
-         SEX CHAR(1) NOT NULL,
-    BIRTH       VARCHAR(10)    NOT NULL, -- 생년월일
-    EMAIL       VARCHAR(20)    NOT NULL, -- 이메일
-    PHONE_NO    VARCHAR(20)    NOT NULL, -- 핸드폰번호
-    USER_ZCODE  VARCHAR(20)    NOT NULL, -- 우편번호?
-    ADDR1       VARCHAR(50)    NOT NULL, -- 주소상세1 API 확인 필요
-    ADDR2       VARCHAR(50)    NOT NULL, -- 주소상세2
-    CREATEDATE  DATE            NOT NULL, -- 가입날짜
-    UPDATEDATE  DATE            NOT NULL,         -- 업데이트 날짜? 
-    LASTLOGIN   DATE            NOT NULL, -- 마지막 접속 날짜
-    USER_USE    CHAR(1)         NOT NULL, -- 아이디 사용 여부
-    CART        VARCHAR(50)    ,         -- 장바구니
-    CODE        VARCHAR(4)     NOT NULL, -- 권한
-    
-     CONSTRAINT USER_PK PRIMARY KEY (USER_NO,USER_ID),
-     CONSTRAINT ROLE_CODE FOREIGN KEY(CODE) REFERENCES COMM001(CODE)
-); 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-CREATE TABLE PRODUCT
-(
-    PRODUCT_NO        VARCHAR(20)      NOT NULL, 
-    PRODUCT_ID        VARCHAR(20)      NULL, 
-    PRODUCT_NAME      VARCHAR(20)      NULL, 
-    PUBLISHER         VARCHAR(20)      NULL, 
-    PRODUCT_STATUS    VARCHAR(5)       NULL, 
-    PRODUCT_PRICE    INTEGER           NULL, 
-    CATEGORYS          VARCHAR(4)       NULL, 
-    QUANTITY          INTEGER            NULL, 
-    DETAIL            VARCHAR(2000)    NULL, 
-    IMAGE             VARCHAR(2000)    NULL, 
-    PRODUCT_RATING    INTEGER            NULL, 
-    SALES_QUANTITY    INTEGER           NULL, 
-    AUTHOR            VARCHAR(20)      NULL, 
-    CONSTRAINT PRODUCT_PK PRIMARY KEY (PRODUCT_NO)
+    `CODE`     VARCHAR(8)     NOT NULL    COMMENT '코드', 
+    `CONTENT`  VARCHAR(45)    NOT NULL    COMMENT '내용', 
+    PRIMARY KEY (CODE)
 );
 
+ALTER TABLE COMM001 COMMENT '공통 테이블';
 
-COMMIT;
+-- drop table USERS;
+-- USERS TABLE CREATE SQL
+CREATE TABLE USERS
+(
+    `USER_NO`    INT            NOT NULL    AUTO_INCREMENT COMMENT '회원 일련번호', 
+    `USER_ID`    VARCHAR(45)    NOT NULL    COMMENT '회원 아이디', 
+    `PASSWORD`   VARCHAR(45)    NOT NULL    COMMENT '회원 비밀번호', 
+    `NAME`       VARCHAR(45)    NOT NULL    COMMENT '회원 이름', 
+    `EMAIL`      VARCHAR(45)    NOT NULL    COMMENT '회원 이메일', 
+    `PHONE`      VARCHAR(45)    NOT NULL    COMMENT '회원 전화번호', 
+    `ZCODE`      VARCHAR(45)    NOT NULL    COMMENT '주소1', 
+    `ADDR1`      VARCHAR(45)    NOT NULL    COMMENT '주소2', 
+    `ADDR2`      VARCHAR(45)    NULL        COMMENT '주소3', 
+    `CRT_DT`     DATETIME       NOT NULL    COMMENT '생성일시', 
+    `UPD_DT`     DATETIME       NOT NULL    COMMENT '수정일시', 
+    `USE_YN`     CHAR(1)        NOT NULL    COMMENT '사용여부', 
+    `AUTH_CODE`  INT            NOT NULL    COMMENT '권한(유저, 어드민)', 
+    `POINT`      INT            NOT NULL    COMMENT '포인트 보유금액', 
+    `GRADE`      INT            NOT NULL    COMMENT '회원등급', 
+    PRIMARY KEY (USER_NO)
+);
+
+-- drop table CATEGORY;
+-- USERS TABLE CREATE SQL
+CREATE TABLE CATEGORY
+(
+    `CATEGORY_NO`  INT            NOT NULL    AUTO_INCREMENT COMMENT '카테고리 일련번호', 
+    `NAME`         VARCHAR(45)    NOT NULL    COMMENT '카테고리이름', 
+    `TOP_ID`       VARCHAR(45)    NOT NULL    COMMENT '최상위카테고리', 
+    `UP_ID`        VARCHAR(45)    NOT NULL    COMMENT '부모카테고리', 
+    `DEPTH`        VARCHAR(45)    NOT NULL    COMMENT '계층', 
+    `USE_YN`       CHAR(1)        NOT NULL    COMMENT '사용여부', 
+    `CRT_DT`       DATETIME       NOT NULL    COMMENT '카테고리 생성날짜', 
+    PRIMARY KEY (CATEGORY_NO)
+);
+
+-- drop table PRODUCT;
+-- USERS TABLE CREATE SQL
+CREATE TABLE PRODUCT
+(
+    `PRODUCT_NO`      INT            NOT NULL    AUTO_INCREMENT COMMENT '상품일련번호', 
+    `NAME`            VARCHAR(45)    NOT NULL    COMMENT '상품이름', 
+    `PRICE`           VARCHAR(45)    NOT NULL    COMMENT '상품가격', 
+    `AUTHOR`          VARCHAR(45)    NOT NULL    COMMENT '저자상세정보', 
+    `PUBLISHER`       VARCHAR(45)    NOT NULL    COMMENT '출판사', 
+    `STATUS`          CHAR(1)        NOT NULL    COMMENT '상태USE/', 
+    `CATEGORY_NO`     INT            NOT NULL    COMMENT '카테고리일련번호', 
+    `CNT`             VARCHAR(45)    NOT NULL    COMMENT '수량', 
+    `DETAIL`          VARCHAR(45)    NOT NULL    COMMENT '책의 상세정보', 
+    `IMAGE_PATH`      VARCHAR(45)    NOT NULL    COMMENT '이미지(상세이미지)', 
+    `GRADE`           INT            NOT NULL    COMMENT '평점', 
+    `THUMBNAIL_PATH`  VARCHAR(45)    NOT NULL    COMMENT '썸네일', 
+    `STOCK`           INT            NOT NULL    COMMENT '재고', 
+    `CRT_DT`          DATETIME       NOT NULL    COMMENT '상품등록일시', 
+    PRIMARY KEY (PRODUCT_NO)
+);
+
+ALTER TABLE PRODUCT
+    ADD CONSTRAINT FK_PRODUCT_CATEGORY_NO_CATEGORY_CATEGORY_NO FOREIGN KEY (CATEGORY_NO)
+        REFERENCES CATEGORY (CATEGORY_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- drop table FUNDING;
+-- USERS TABLE CREATE SQL
+CREATE TABLE FUNDING
+(
+    `FUND_NO`         INT            NOT NULL    AUTO_INCREMENT COMMENT '펀딩 일련번호', 
+    `TITLE`           VARCHAR(45)    NOT NULL    COMMENT '제목', 
+    `USER_NO`         INT            NOT NULL    COMMENT '작성자', 
+    `CONTENT`         VARCHAR(45)    NOT NULL    COMMENT '내용', 
+    `CRT_DT`          DATETIME       NOT NULL    COMMENT '작성일', 
+    `NOW_AMT`         INT            NOT NULL    COMMENT '현재금액', 
+    `GOAL_AMT`        INT            NOT NULL    COMMENT '목표액', 
+    `START_DT`        DATETIME       NOT NULL    COMMENT '펀딩시작일', 
+    `END_DT`          DATETIME       NOT NULL    COMMENT '종료일', 
+    `IMAGE_PATH`      VARCHAR(45)    NOT NULL    COMMENT '이미지(상세이미지)', 
+    `THUMBNAIL_PATH`  VARCHAR(45)    NOT NULL    COMMENT '썸네일', 
+    `FUND_YN`         INT            NOT NULL    COMMENT '펀딩상태', 
+    `USE_YN`          CHAR(1)        NOT NULL    COMMENT '승인여부', 
+    PRIMARY KEY (FUND_NO)
+);
+
+ALTER TABLE FUNDING
+    ADD CONSTRAINT FK_FUNDING_USER_NO_USERS_USER_NO FOREIGN KEY (USER_NO)
+        REFERENCES USERS (USER_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- drop table ORDERS;
+-- USERS TABLE CREATE SQL
+CREATE TABLE ORDERS
+(
+    `ORDER_NO`         INT            NOT NULL    COMMENT '주문고유번호', 
+    `ORDER_SEQ`        INT            NOT NULL    COMMENT '주문일련번호', 
+    `PRODUCT_NO`       INT            NULL        COMMENT '상품일련번호', 
+    `CNT`              VARCHAR(45)    NOT NULL    COMMENT '수량', 
+    `USER_NO`          INT            NOT NULL    COMMENT '회원 일련번호', 
+    `CRT_DT`           DATETIME       NOT NULL    COMMENT '주문일자', 
+    `DELIVERY_TYPE`    CHAR(1)        NOT NULL    COMMENT '배송방법', 
+    `POINT_AMT`        INT            NULL        COMMENT '포인트사용금액', 
+    `PAY_TYPE`         VARCHAR(45)    NOT NULL    COMMENT '결제방법', 
+    `DELIVERY_STATUS`  VARCHAR(45)    NOT NULL    COMMENT '배송상태', 
+    `PAY_AMT`          INT            NOT NULL    COMMENT '결제금액', 
+    `INVOICE`          VARCHAR(45)    NULL        COMMENT '운송장', 
+    `COUPON_AMT`       INT            NULL        COMMENT '쿠폰사용금액', 
+    `ZCODE`            VARCHAR(45)    NOT NULL    COMMENT '주소1', 
+    `ADDR1`            VARCHAR(45)    NOT NULL    COMMENT '주소2', 
+    `ADDR2`            VARCHAR(45)    NULL        COMMENT '주소3', 
+    `FUND_NO`          INT            NULL        COMMENT '펀딩 일련번호', 
+    PRIMARY KEY (ORDER_NO, ORDER_SEQ)
+);
+
+ALTER TABLE ORDERS
+    ADD CONSTRAINT FK_ORDERS_PRODUCT_NO_PRODUCT_PRODUCT_NO FOREIGN KEY (PRODUCT_NO)
+        REFERENCES PRODUCT (PRODUCT_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE ORDERS
+    ADD CONSTRAINT FK_ORDERS_USER_NO_USERS_USER_NO FOREIGN KEY (USER_NO)
+        REFERENCES USERS (USER_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE ORDERS
+    ADD CONSTRAINT FK_ORDERS_FUND_NO_FUNDING_FUND_NO FOREIGN KEY (FUND_NO)
+        REFERENCES FUNDING (FUND_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- drop table REVIEW;
+-- USERS TABLE CREATE SQL
+CREATE TABLE REVIEW
+(
+    `PRODUCT_NO`  INT            NOT NULL    AUTO_INCREMENT COMMENT '상품 일련번호', 
+    `REPLY_NO`    VARCHAR(45)    NOT NULL    COMMENT '후기 일련번호', 
+    `USER_NO`     INT            NOT NULL    COMMENT '회원 일련번호', 
+    `CONTENT`     VARCHAR(45)    NOT NULL    COMMENT '댓글 내용', 
+    `CRT_DT`      DATETIME       NOT NULL    COMMENT '후기 작성일자', 
+    `GRADE`       INT            NOT NULL    COMMENT '평점', 
+    PRIMARY KEY (PRODUCT_NO, REPLY_NO)
+);
+
+ALTER TABLE REVIEW
+    ADD CONSTRAINT FK_REVIEW_PRODUCT_NO_PRODUCT_PRODUCT_NO FOREIGN KEY (PRODUCT_NO)
+        REFERENCES PRODUCT (PRODUCT_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- drop table CART;
+-- USERS TABLE CREATE SQL
+CREATE TABLE CART
+(
+    `USER_NO`     INT    NOT NULL    COMMENT '회원 일련번호', 
+    `PRODUCT_NO`  INT    NOT NULL    COMMENT '상품 일련번호', 
+    `CNT`         INT    NOT NULL    COMMENT '상품 수량', 
+    PRIMARY KEY (USER_NO, PRODUCT_NO)
+);
+
+ALTER TABLE CART
+    ADD CONSTRAINT FK_CART_USER_NO_USERS_USER_NO FOREIGN KEY (USER_NO)
+        REFERENCES USERS (USER_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE CART
+    ADD CONSTRAINT FK_CART_PRODUCT_NO_PRODUCT_PRODUCT_NO FOREIGN KEY (PRODUCT_NO)
+        REFERENCES PRODUCT (PRODUCT_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- drop table COUPON;
+-- USERS TABLE CREATE SQL
+CREATE TABLE COUPON
+(	
+	`COUPON_NO`  INT            NOT NULL    AUTO_INCREMENT COMMENT '쿠폰 일련번호', 
+    `USER_NO`    INT            NOT NULL    COMMENT '회원 일련번호', 
+    `NAME`       VARCHAR(45)    NOT NULL    COMMENT '쿠폰 이름', 
+    `DC_RATE`    VARCHAR(45)    NOT NULL    COMMENT '할인율', 
+    `USE_YN`     CHAR(1)        NOT NULL    COMMENT '쿠폰 사용여부', 
+    `CRT_DT`     DATETIME       NOT NULL    COMMENT '쿠폰 발행일', 
+    `END_DT`     DATETIME       NULL        COMMENT '쿠폰 만료일', 
+    `USE_DT`     DATETIME       NOT NULL    COMMENT '쿠폰 사용일', 
+    PRIMARY KEY (COUPON_NO, USER_NO)
+);
+
+ALTER TABLE COUPON
+    ADD CONSTRAINT FK_COUPON_USER_NO_USERS_USER_NO FOREIGN KEY (USER_NO)
+        REFERENCES USERS (USER_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- drop table POINT;
+-- USERS TABLE CREATE SQL
+CREATE TABLE POINT
+(
+	`POINT_NO`   INT            NOT NULL    AUTO_INCREMENT COMMENT '포인트 일련번호', 
+    `USER_NO`    INT            NOT NULL    COMMENT '회원 일련번호', 
+    `INDE_CODE`  VARCHAR(45)    NOT NULL    COMMENT '포인트 양수음수 판단', 
+    `POINT`      VARCHAR(45)    NOT NULL    COMMENT '포인트', 
+    `CRT_DT`     DATETIME       NOT NULL    COMMENT '포인트 사용일', 
+    PRIMARY KEY (POINT_NO, USER_NO)
+);
+
+ALTER TABLE POINT
+    ADD CONSTRAINT FK_POINT_USER_NO_USERS_USER_NO FOREIGN KEY (USER_NO)
+        REFERENCES USERS (USER_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- drop table BOARD;
+-- USERS TABLE CREATE SQL
+CREATE TABLE BOARD
+(
+    `BOARD_TYPE`  VARCHAR(45)    NOT NULL    COMMENT '게시판 유형', 
+    `BOARD_NO`    INT            NOT NULL    AUTO_INCREMENT COMMENT '게시판 일련번호', 
+    `CONTENT`     VARCHAR(45)    NOT NULL    COMMENT '내용', 
+    `USER_NO`     INT            NOT NULL    COMMENT '회원 일련번호', 
+    `CRT_DT`      DATETIME       NOT NULL    COMMENT '생성일시', 
+    `TITLE`       VARCHAR(45)    NOT NULL    COMMENT '게시판 제목', 
+    `DEPTH`       VARCHAR(45)    NOT NULL    COMMENT '계층', 
+    `TOP_ID`      VARCHAR(45)    NOT NULL    COMMENT '최상위카테고리', 
+    `UP_ID`       VARCHAR(45)    NOT NULL    COMMENT '부모카테고리', 
+    PRIMARY KEY (BOARD_NO)
+);
+
+ALTER TABLE BOARD COMMENT 'Q&A FAQ 공지사항';
+
+ALTER TABLE BOARD
+    ADD CONSTRAINT FK_BOARD_USER_NO_USERS_USER_NO FOREIGN KEY (USER_NO)
+        REFERENCES USERS (USER_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- drop table FUNDING_USERS;
+-- USERS TABLE CREATE SQL
+CREATE TABLE FUNDING_USERS
+(
+    `FUND_NO`  INT         NOT NULL    AUTO_INCREMENT COMMENT '펀딩 일련번호', 
+    `USER_NO`  INT         NOT NULL    COMMENT '회원 일련번호', 
+    `PRICE`    INT         NOT NULL    COMMENT '펀딩 금액', 
+    `CRT_DT`   DATETIME    NOT NULL    COMMENT '펀딩 일시', 
+    PRIMARY KEY (FUND_NO)
+);
+
+ALTER TABLE FUNDING_USERS
+    ADD CONSTRAINT FK_FUNDING_USERS_FUND_NO_FUNDING_FUND_NO FOREIGN KEY (FUND_NO)
+        REFERENCES FUNDING (FUND_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE FUNDING_USERS
+    ADD CONSTRAINT FK_FUNDING_USERS_USER_NO_USERS_USER_NO FOREIGN KEY (USER_NO)
+        REFERENCES USERS (USER_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
