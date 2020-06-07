@@ -24,12 +24,12 @@ public class Main {
 		LOGGER.debug("\nConstructor :: "+this.getClass()+"\n");
 	}
 	
-	@GetMapping("/")
+	/* @GetMapping("/")
 	public String index() {
-		return "index";
-	}
+		return "main";
+	} */
 	//Method
-	@RequestMapping(value="mainPage", method=RequestMethod.GET)
+	/* @RequestMapping(value="mainPage", method=RequestMethod.GET)
 	public String mainPage() {
 		LOGGER.debug("\nmainPage :: "+this.getClass()+"\n");
 		String URL = "";
@@ -43,5 +43,5 @@ public class Main {
 			LOGGER.error("mainPage Exception : " + e.getMessage());
 		}
 		return URL;
-	}
+	} */
 }
