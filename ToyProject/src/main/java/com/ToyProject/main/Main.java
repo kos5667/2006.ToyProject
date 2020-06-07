@@ -26,7 +26,7 @@ public class Main {
 	
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		return "thymeleaf/index";
 	}
 	//Method
 	@RequestMapping(value="mainPage", method=RequestMethod.GET)
