@@ -13,11 +13,35 @@ public class UserController {
 	@Resource(name = "UserService")
 	UserService userService;
 	
-	@RequestMapping(value="user/count", method=RequestMethod.GET)
+	@RequestMapping(value="/user/login", method=RequestMethod.GET)
 	public String getUserCount(Model model){
-		System.out.println("Controller 빈 정상작동");
-		return "abc";
+		System.out.println("Controller 로그인 동작");
+		
+		return "thymeleaf/user/login";
 	}
+	@RequestMapping(value="/user/create",method = RequestMethod.GET)
+	public String insertUser(Model model){
+		System.out.println("Controller 유저 생성 동작");
+		
+		return "thymeleaf/user/userCreate";
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	@RequestMapping("/thymeleafTest") 
 	public String thymeleafTest(Model model) { 
