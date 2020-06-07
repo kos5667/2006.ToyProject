@@ -24,10 +24,6 @@ public class Main {
 		LOGGER.debug("\nConstructor :: "+this.getClass()+"\n");
 	}
 	
-	/* @GetMapping("/")
-	public String index() {
-		return "main";
-	} */
 	//Method
 	/* @RequestMapping(value="mainPage", method=RequestMethod.GET)
 	public String mainPage() {
