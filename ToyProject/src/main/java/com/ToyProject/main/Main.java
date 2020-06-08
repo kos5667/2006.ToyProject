@@ -26,7 +26,7 @@ public class Main {
 
 	@GetMapping("/")
 	public String index(){
-		return "thymeleaf/index";
+		return "index";
 	}
 	
 	//Method

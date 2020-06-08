@@ -2,7 +2,7 @@ package com.ToyProject.user.vo;
 
 public class TestVo { 
     private int USER_NO; 
-    private int USER_ID;
+    private String USER_ID;
     private String PASSWORD;
 
     public int getUSER_NO() {
@@ -13,11 +13,11 @@ public class TestVo {
         USER_NO = uSER_NO;
     }
 
-    public int getUSER_ID() {
+    public String getUSER_ID() {
         return USER_ID;
     }
 
-    public void setUSER_ID(int uSER_ID) {
+    public void setUSER_ID(String uSER_ID) {
         USER_ID = uSER_ID;
     }
 
