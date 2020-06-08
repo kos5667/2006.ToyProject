@@ -23,6 +23,11 @@ public class Main {
 	public Main() throws Exception {
 		LOGGER.debug("\nConstructor :: "+this.getClass()+"\n");
 	}
+
+	@GetMapping("/")
+	public String index(){
+		return "thymeleaf/index";
+	}
 	
 	//Method
 	/* @RequestMapping(value="mainPage", method=RequestMethod.GET)

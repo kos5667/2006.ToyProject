@@ -20,8 +20,9 @@
 
 
 
-  <select id="selectUser" resultType="map">
+  <select id="selectUser" resultType="com.ToyProject.user.vo.TestVo">
     SELECT * FROM users
+    WHERE (USER_ID=#{userID});
   </select>
   
 </mapper>
