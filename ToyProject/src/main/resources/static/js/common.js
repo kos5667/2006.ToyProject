@@ -3,9 +3,6 @@
  * footer.html
  */
 
-function openSidebar(){
-    $('.ui.sidebar').sidebar('toggle');
-}
 /*  function loadScript(url, callback){
      var script = document.createElement('script');
      script.src = url;
