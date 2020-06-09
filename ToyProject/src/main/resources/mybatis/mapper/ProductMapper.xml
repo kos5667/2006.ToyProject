@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ToyProject.product.mapper.ProductMapper">
+<!--
+  <insert id="insertUser" parameterType="com.Toyproject.user.vo.UserVo">
+  INSERT INTO USERS (USER_NO,USER_ID,PASSWORD,NAME,EMAIL,PHONE,ZCODE,ADDR1,ADDR2,CRT_DT,UPD_DT,USE_YN,AUTH_CODE,POINT,GRADE)
+  VALUES
+  (#{USER_NO},#{USER_ID},#{PASSWORD},#{NAME},#{EMAIL},#{PHONE},#{ZCODE},#{ADDR1},#{ADDR2},#{CRT_DT},#{UPD_DT},#{USE_YN},#{AUTH_CODE},#{POINT},#{GRADE})
+  </INSERT>
+-->
+
+  <insert id="insertUser" parameterType="com.ToyProject.user.vo.TestVo">
+  INSERT INTO USERS 
+  (USER_NO, USER_ID, PASSWORD)
+  VALUES
+  (#{USER_NO},#{USER_ID},#{PASSWORD})
+  </insert>
+
+
+
+
+  <select id="getCategoryList" resultType="com.ToyProject.product.vo.CategoryVo">
+         WITH RECURSIVE CTE AS (
+            SELECT 
+        CATEGORY_NO,
+        UP_ID,
+        NAME
+        FROM CATEGORY 
+        WHERE CATEGORY_NO = 1
+        UNION ALL
+        SELECT
+        a.CATEGORY_NO,
+        a.UP_ID,
+        a.NAME
+        FROM CATEGORY a
+        INNER JOIN CTE b ON a.UP_ID = b.CATEGORY_NO 
+        )
+
+        SELECT CATEGORY_NO, UP_ID, NAME FROM CTE;
+  </select>
+  
+</mapper>

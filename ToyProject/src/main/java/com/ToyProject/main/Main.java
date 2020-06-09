@@ -40,4 +40,10 @@ public class Main {
 		}
 		return URL;
 	} */
+
+	@GetMapping("/")
+	public String index() {
+		System.out.println("ddddd");
+		return "index";
+	}
 }

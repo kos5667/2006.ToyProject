@@ -14,3 +14,11 @@ function openSidebar(){
      document.getElementsByTagName('head')[0].appendChild(script);
  }
  */
+
+function main(){
+
+}
+
+
+
+document.addEventListener("DOMContentLoaded", main);
