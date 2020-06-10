@@ -42,7 +42,7 @@ public class UserController {
 	}
 
 
-/**
+/** 
  * //id 값으로 먼저 아이디 있는지 확인
 	//유효성검사
 	//
@@ -58,7 +58,23 @@ public class UserController {
 
 		String userID=userVO.getUSER_ID();
 		List<TestVo> list= userService.selectUser(userID);
-		System.out.println(list);	
+
+		// System.out.println(list.get(0).getUSER_ID());
+		
+		// System.out.println(list.get(1));
+		
+		// System.out.println(list.get(2));
+		
+
+		
+		if(list.isEmpty()){
+			System.out.println("아이디를 사용할수 있습니다.");
+			
+		}
+		else{
+			System.out.println(list);
+			System.out.println("중복아이디가 있습니다.");
+		}
 	
 		
 		
