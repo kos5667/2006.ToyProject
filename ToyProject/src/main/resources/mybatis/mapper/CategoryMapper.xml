@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ToyProject.category.mapper.CategoryMapper">
+<!--
+  <insert id="insertUser" parameterType="com.Toyproject.user.vo.UserVo">
+  INSERT INTO USERS (USER_NO,USER_ID,PASSWORD,NAME,EMAIL,PHONE,ZCODE,ADDR1,ADDR2,CRT_DT,UPD_DT,USE_YN,AUTH_CODE,POINT,GRADE)
+  VALUES
+  (#{USER_NO},#{USER_ID},#{PASSWORD},#{NAME},#{EMAIL},#{PHONE},#{ZCODE},#{ADDR1},#{ADDR2},#{CRT_DT},#{UPD_DT},#{USE_YN},#{AUTH_CODE},#{POINT},#{GRADE})
+  </INSERT>
+-->
+
+
+    <select id="selectCategoryHeaderList" resultType="com.ToyProject.category.vo.CategoryVo">
+		  SELECT * FROM CATEGORY WHERE DEPTH=1;
+    </select>
+
+
+  <select id="getCategoryList" resultType="com.ToyProject.category.vo.CategoryVo">
+		  WITH RECURSIVE CTE AS (
+            SELECT 
+        CATEGORY_NO,
+        UP_ID,
+        NAME,
+        NAME AS PATH
+        FROM CATEGORY 
+        WHERE UP_ID = #{CATEGORY_NO}
+        UNION ALL
+        SELECT
+        b.CATEGORY_NO,
+        b.UP_ID,
+        b.NAME,
+        CONCAT(a.path,',',b.name) AS PATH
+        FROM CTE a
+        JOIN CATEGORY b ON a.CATEGORY_NO = b.UP_ID
+        )
+
+        SELECT CATEGORY_NO, UP_ID, NAME, PATH FROM CTE ORDER BY PATH;
+  </select>
+  
+</mapper>

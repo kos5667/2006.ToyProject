@@ -3,12 +3,15 @@ package com.ToyProject.product.service;
 import java.util.List;
 import java.util.Map;
 
-import com.ToyProject.product.vo.CategoryVo;
+import com.ToyProject.product.vo.ProductVo;
+
+
 
 
 
 public interface ProductService {
 
-    public List<CategoryVo> getCategoryList() throws Exception;
+    List<ProductVo> selectProductList(int categoryNo) throws Exception;
+    
 
 }

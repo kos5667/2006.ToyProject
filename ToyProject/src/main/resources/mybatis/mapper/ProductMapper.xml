@@ -9,35 +9,14 @@
   (#{USER_NO},#{USER_ID},#{PASSWORD},#{NAME},#{EMAIL},#{PHONE},#{ZCODE},#{ADDR1},#{ADDR2},#{CRT_DT},#{UPD_DT},#{USE_YN},#{AUTH_CODE},#{POINT},#{GRADE})
   </INSERT>
 -->
-
-  <insert id="insertUser" parameterType="com.ToyProject.user.vo.TestVo">
-  INSERT INTO USERS 
-  (USER_NO, USER_ID, PASSWORD)
-  VALUES
-  (#{USER_NO},#{USER_ID},#{PASSWORD})
-  </insert>
-
-
-
-
-  <select id="getCategoryList" resultType="com.ToyProject.product.vo.CategoryVo">
-         WITH RECURSIVE CTE AS (
-            SELECT 
-        CATEGORY_NO,
-        UP_ID,
-        NAME
-        FROM CATEGORY 
-        WHERE CATEGORY_NO = 1
-        UNION ALL
-        SELECT
-        a.CATEGORY_NO,
-        a.UP_ID,
-        a.NAME
-        FROM CATEGORY a
-        INNER JOIN CTE b ON a.UP_ID = b.CATEGORY_NO 
-        )
-
-        SELECT CATEGORY_NO, UP_ID, NAME FROM CTE;
-  </select>
+     <select id="selectProductList" resultType="com.ToyProject.product.vo.ProductVo">
+		  SELECT * FROM PRODUCT A, CATEGORY B
+       WHERE A.CATEGORY_NO=B.CATEGORY_NO
+       AND (
+         B.CATEGORY_NO=#{categoryNo}
+          or B.UP_ID=#{categoryNo}
+          or B.TOP_ID=#{categoryNo}
+       )
+    </select>
   
 </mapper>

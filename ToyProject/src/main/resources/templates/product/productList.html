@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/default" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default" -->
+
+    
+
+<style>
+    .left-box {
+      background: red;
+      float: left;
+      width: 50%;
+    }
+    .right-box {
+      background: blue;
+      float: right;
+      width: 50%;
+    }
+</style>
+
+    
+  
+<div layout:fragment="content">   
+
+    <style>
+        .left-box {
+          float: left;
+          width: 20%;
+        }
+        .right-box {
+          float: right;
+          width: 80%;
+        }
+    </style>
+    
+    <div class='left-box'>왼쪽</div>
+
+
+    <div class='right-box'>오른쪽
+        <tr th:each="product : ${productList}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.category_no}"></td>
+            <br>
+        </tr>
+    </div>
+    
+
+<script th:src="@{/js/product/product.js}"></script>
+
+</div>
+
+
+</html>

@@ -1,4 +1,4 @@
-package com.ToyProject.product.vo;
+package com.ToyProject.category.vo;
 
 import java.sql.Date;
 
