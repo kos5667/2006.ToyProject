@@ -10,4 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CategoryMapper {
 
     List<CategoryVo> selectCategoryHeaderList() throws Exception;
+
+    List<CategoryVo> getCategoryList() throws Exception;
 }

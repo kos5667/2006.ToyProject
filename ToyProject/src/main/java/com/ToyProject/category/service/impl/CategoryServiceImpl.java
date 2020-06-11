@@ -22,5 +22,10 @@ public class CategoryServiceImpl implements CategoryService {
     public List<CategoryVo> selectCategoryHeaderList() throws Exception {
        return categoryMapper.selectCategoryHeaderList();
     }
+
+    @Override
+    public List<CategoryVo> getCategoryList() throws Exception {
+        return categoryMapper.getCategoryList();
+    }
     
 }

@@ -28,12 +28,13 @@ public class CategoryController {
 		return list;
     }
     
-    // @RequestMapping(value = "/category/list", method = RequestMethod.GET)
-	// public List<CategoryVo> selectCategoryHeaderList(Model model) throws Exception {
-    //     List<CategoryVo> list=categoryService.selectCategoryHeaderList();
-    //     System.out.println("CategoryList:"+list.toString());
+    @ResponseBody
+    @RequestMapping(value = "/category/list", method = RequestMethod.GET)
+	public List<CategoryVo> getCategoryList(Model model) throws Exception {
+        List<CategoryVo> list=categoryService.getCategoryList();
+        System.out.println("CategoryList:"+list.toString());
 
-	// 	return list;
-	//}
+		return list;
+	}
 
 }

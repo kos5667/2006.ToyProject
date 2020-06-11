@@ -2,9 +2,9 @@ function btnClick(){
     alert("클릭 이벤트");
 }
 
-function getCategoryList(){
+function getCategoryHeaderList(){
     const listElement = document.querySelector('.grid');
-
+ 
     $.ajax({
         // data: {
         //     USER_ID: id,
@@ -32,8 +32,8 @@ function getCategoryList(){
 }); //ajax end
 }
 
-function main(){
-    console.log("테스트");
+function headerMain(){
+    console.log("heade.로그");
 
     $('.activating.element').popup();
     
@@ -42,15 +42,15 @@ function main(){
         inline     : true,
         hoverable  : true,
         position   : 'bottom left',
+        lastResort : 'bottom left',
         delay: {
         show: 300,
-        hide: 800
+        hide: 300
         }
     });
-
-    getCategoryList();
+    getCategoryHeaderList();
 }
 
 
 
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener("DOMContentLoaded", headerMain);

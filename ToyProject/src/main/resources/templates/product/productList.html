@@ -1,23 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/default" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!-- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default" -->
-
-    
-
-<style>
-    .left-box {
-      background: red;
-      float: left;
-      width: 50%;
-    }
-    .right-box {
-      background: blue;
-      float: right;
-      width: 50%;
-    }
-</style>
-
-    
+  
   
 <div layout:fragment="content">   
 
@@ -31,21 +15,63 @@
           width: 80%;
         }
     </style>
-    
-    <div class='left-box'>왼쪽</div>
+      
+  <script th:src="@{/js/product/product.js}"></script>
 
-
-    <div class='right-box'>오른쪽
-        <tr th:each="product : ${productList}">
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.category_no}"></td>
-            <br>
-        </tr>
+    <div class='left-box'>
+      <div class="ui styled accordion" style="width:300px;">
+        <div class="active title">
+          <i class="dropdown icon"></i>
+          <a onclick="selectProductList(1)">소설</a>
+        </div>
+        <div class="content">
+          <div class="accordion">
+            <div class="active title"></div>
+                <i class="dropdown icon"></i>
+                <a onclick="selectProductList(2)">한국소설</a>
+            </div>
+            <div class="active content">
+                    <a onclick="selectProductList(3)">2000년대 이전</a><br>
+                    <a href='/testPage'>2000년대 이후</a>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                <a href='/testPage'>일본소설</a>
+            </div>
+          </div>
+        </div>
     </div>
-    
 
-<script th:src="@{/js/product/product.js}"></script>
 
+    <div class='right-box'>
+      <div class="ui link cards">
+            <div class="card" th:each="data : ${productList}">
+                <div class="image">
+                  <!-- <img th:src="@{/images/kristy.png}"> -->
+                </div>
+                <div class="content">
+                  <div class="header"><dd th:text="${data.name}"></dd></div>
+                  <div class="meta">
+                    <a>Friends</a>
+                  </div>
+                  <div class="description">
+                    <dd th:text="${data.product_no}"></dd>
+                  </div>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                    Joined in 2013
+                  </span>
+                  <span>
+                    <i class="user icon"></i>
+                    
+                  </span>
+                </div>
+              </div>
+      </div>
+
+    </div>
+  
 </div>
 
 

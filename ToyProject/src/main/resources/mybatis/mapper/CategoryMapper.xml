@@ -24,7 +24,7 @@
         NAME,
         NAME AS PATH
         FROM CATEGORY 
-        WHERE UP_ID = #{CATEGORY_NO}
+        WHERE UP_ID = 1
         UNION ALL
         SELECT
         b.CATEGORY_NO,
