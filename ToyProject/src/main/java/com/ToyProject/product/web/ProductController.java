@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.ToyProject.category.service.CategoryService;
 import com.ToyProject.category.vo.CategoryVo;
 import com.ToyProject.product.service.ProductService;
 import com.ToyProject.product.vo.ProductVo;
@@ -20,11 +21,15 @@ public class ProductController {
 
     @Resource(name = "ProductService")
     ProductService productService;
-    
+
+    @Resource(name = "CategoryService")
+    CategoryService categoryService;
+
     @RequestMapping(value = "/product/list", method = RequestMethod.GET)
 	public String selectProductList(Model model, @RequestParam("category_no") int categoryNo) throws Exception {
-        System.out.println("category_no:"+categoryNo);
-        List<ProductVo> productList=productService.selectProductList(categoryNo);
+
+        List<CategoryVo> categoryList=categoryService.getCategoryList(categoryNo);
+        List<ProductVo> productList=productService.selectProductList(categoryList);
         model.addAttribute("productList", productList);
         System.out.println("productListTTTTT SIZE:"+productList.size());
 
@@ -34,9 +39,9 @@ public class ProductController {
     @ResponseBody
     @RequestMapping(value = "/product/list2", method = RequestMethod.GET)
 	public List<ProductVo> selectProductList2(Model model, @RequestParam("category_no") int categoryNo) throws Exception {
-        System.out.println("praaaaaaa"+categoryNo);
+        List<CategoryVo> categoryList=categoryService.getCategoryList(categoryNo);
 
-		return productService.selectProductList(categoryNo);
+		return productService.selectProductList(categoryList);
 	}
 
 

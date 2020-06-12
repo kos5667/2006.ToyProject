@@ -31,7 +31,8 @@ public class CategoryController {
     @ResponseBody
     @RequestMapping(value = "/category/list", method = RequestMethod.GET)
 	public List<CategoryVo> getCategoryList(Model model) throws Exception {
-        List<CategoryVo> list=categoryService.getCategoryList();
+        int categoryNo=1;
+        List<CategoryVo> list=categoryService.getCategoryList(categoryNo);
         System.out.println("CategoryList:"+list.toString());
 
 		return list;

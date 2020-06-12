@@ -3,6 +3,8 @@ package com.ToyProject.product.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.ToyProject.category.mapper.CategoryMapper;
+import com.ToyProject.category.vo.CategoryVo;
 import com.ToyProject.product.mapper.ProductMapper;
 import com.ToyProject.product.service.ProductService;
 import com.ToyProject.product.vo.ProductVo;
@@ -20,9 +22,12 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductMapper productMapper;
 
+ 
+
     @Override
-    public List<ProductVo> selectProductList(int categoryNo) throws Exception {
-        return productMapper.selectProductList(categoryNo);
+    public List<ProductVo> selectProductList(List<CategoryVo> categoryList) throws Exception {
+       
+        return productMapper.selectProductList(categoryList);
     }
     
 

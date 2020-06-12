@@ -16,7 +16,7 @@
     </select>
 
 
-  <select id="getCategoryList" resultType="com.ToyProject.category.vo.CategoryVo">
+  <select id="getCategoryList" resultType="com.ToyProject.category.vo.CategoryVo" parameterType="int">
 		  WITH RECURSIVE CTE AS (
             SELECT 
         CATEGORY_NO,
@@ -24,7 +24,7 @@
         NAME,
         NAME AS PATH
         FROM CATEGORY 
-        WHERE UP_ID = 1
+        WHERE UP_ID = #{categoryNo}
         UNION ALL
         SELECT
         b.CATEGORY_NO,

@@ -24,8 +24,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryVo> getCategoryList() throws Exception {
-        return categoryMapper.getCategoryList();
+    public List<CategoryVo> getCategoryList(int categoryNo) throws Exception {
+        return categoryMapper.getCategoryList(categoryNo);
     }
     
 }

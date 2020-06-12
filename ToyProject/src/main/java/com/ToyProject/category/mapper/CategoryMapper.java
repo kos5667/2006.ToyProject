@@ -11,5 +11,5 @@ public interface CategoryMapper {
 
     List<CategoryVo> selectCategoryHeaderList() throws Exception;
 
-    List<CategoryVo> getCategoryList() throws Exception;
+    List<CategoryVo> getCategoryList(int categoryNo) throws Exception;
 }

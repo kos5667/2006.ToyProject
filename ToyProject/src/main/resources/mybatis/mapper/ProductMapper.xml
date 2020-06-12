@@ -10,13 +10,12 @@
   </INSERT>
 -->
      <select id="selectProductList" resultType="com.ToyProject.product.vo.ProductVo">
-		  SELECT * FROM PRODUCT A, CATEGORY B
-       WHERE A.CATEGORY_NO=B.CATEGORY_NO
-       AND (
-         B.CATEGORY_NO=#{categoryNo}
-          or B.UP_ID=#{categoryNo}
-          or B.TOP_ID=#{categoryNo}
-       )
+		  SELECT * FROM PRODUCT A
+      WHERE CATEGORY_NO IN
+        <foreach collection="list" item="category" open="(" close=")" separator=",">
+          #{category.category_no}
+        </foreach>
     </select>
   
 </mapper>
+
