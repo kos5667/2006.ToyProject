@@ -2,6 +2,7 @@ function btnClick(){
     alert("클릭 이벤트");
 }
 
+
 function selectProductList(e){
   event.preventDefault();
   event.stopPropagation();
@@ -34,7 +35,7 @@ function selectProductList(e){
                 
               </div>
               <div class="content">
-                <div class="header"><dd>${data.name}</dd></div>
+                <div class="header"><dd><a href="/product/detail?id=${data.name}"></a></dd></div>
                 <div class="meta">
                   <a>Friends</a>
                 </div>
