@@ -1,9 +1,11 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
         </encoder>
+        
     </appender>
 
     <logger name="jdbc" level="OFF"/>

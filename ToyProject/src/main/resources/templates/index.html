@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/default" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<!-- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default" -->
+
 <div layout:fragment="content">
-
+    <script th:src="@{/js/index/index.js}"></script>
     <div style="border: 1px solid red">
-        main.html 입니다.
+    main.html 입니다.
+        <div>
+            <button onclick="test()">
+                test
+            </button>
+        </div>
     </div>
-
 </div>
 </html>
