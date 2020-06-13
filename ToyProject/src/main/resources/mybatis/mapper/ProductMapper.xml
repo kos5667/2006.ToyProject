@@ -11,7 +11,9 @@
 -->
      <select id="selectProductList" resultType="com.ToyProject.product.vo.ProductVo">
 		  SELECT * FROM PRODUCT A
-      WHERE CATEGORY_NO IN
+      WHERE 
+    
+      CATEGORY_NO IN
         <foreach collection="list" item="category" open="(" close=")" separator=",">
           #{category.category_no}
         </foreach>

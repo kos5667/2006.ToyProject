@@ -19,8 +19,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     CategoryMapper categoryMapper;
 
-    public List<CategoryVo> selectCategoryHeaderList() throws Exception {
-       return categoryMapper.selectCategoryHeaderList();
+    public List<CategoryVo> selectCategoryList(int categoryNo) throws Exception {
+       return categoryMapper.selectCategoryList(categoryNo);
     }
 
     @Override

@@ -2,15 +2,14 @@ function btnClick(){
     alert("클릭 이벤트");
 }
 
-function getCategoryHeaderList(){
+function selectHeaderCategoryList(){
     const listElement = document.querySelector('.grid');
  
     $.ajax({
-        // data: {
-        //     USER_ID: id,
-        //     PASSWORD: pw
-        //         },
-        url: "/category/header",
+        data: {
+            categoryNo: 0
+        },
+        url: "/category/list",
         type: 'GET',
         dataType : "json",
         success: function(list) {
@@ -19,7 +18,7 @@ function getCategoryHeaderList(){
                 const itemElement = document.createElement('div');
                 itemElement.classList.value = 'column';
                 itemElement.innerHTML = `<h4 class="ui header">
-                <a href="/product/list?category_no=${data.category_no}">${data.name}</h4>`
+                <a href="/product/list?categoryNo=${data.category_no}">${data.name}</h4>`
 
                
                 listElement.append(itemElement);
@@ -48,7 +47,7 @@ function headerMain(){
         hide: 300
         }
     });
-    getCategoryHeaderList();
+    selectHeaderCategoryList();
 }
 
 

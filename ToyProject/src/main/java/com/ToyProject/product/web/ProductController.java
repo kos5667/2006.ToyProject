@@ -26,11 +26,15 @@ public class ProductController {
     CategoryService categoryService;
 
     @RequestMapping(value = "/product/list", method = RequestMethod.GET)
-	public String selectProductList(Model model, @RequestParam("category_no") int categoryNo) throws Exception {
+	public String selectProductList(Model model, @RequestParam("categoryNo") int categoryNo) throws Exception {
 
-        List<CategoryVo> categoryList=categoryService.getCategoryList(categoryNo);
-        List<ProductVo> productList=productService.selectProductList(categoryList);
+        List<CategoryVo> categoryListNo=categoryService.getCategoryList(categoryNo);
+        List<ProductVo> productList=productService.selectProductList(categoryListNo);
+
+        List<CategoryVo> categoryList=categoryService.selectCategoryList(categoryNo);
         model.addAttribute("productList", productList);
+        model.addAttribute("categoryList", categoryList);
+        
         System.out.println("productListTTTTT SIZE:"+productList.size());
 
 		return "/product/productList";
@@ -38,7 +42,7 @@ public class ProductController {
     
     @ResponseBody
     @RequestMapping(value = "/product/list2", method = RequestMethod.GET)
-	public List<ProductVo> selectProductList2(Model model, @RequestParam("category_no") int categoryNo) throws Exception {
+	public List<ProductVo> selectProductList2(Model model, @RequestParam("categoryNo") int categoryNo) throws Exception {
         List<CategoryVo> categoryList=categoryService.getCategoryList(categoryNo);
 
 		return productService.selectProductList(categoryList);

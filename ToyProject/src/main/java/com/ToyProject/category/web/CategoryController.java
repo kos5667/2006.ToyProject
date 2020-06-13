@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -20,16 +21,16 @@ public class CategoryController {
     CategoryService categoryService;
 
     @ResponseBody
-    @RequestMapping(value = "/category/header", method = RequestMethod.GET)
-	public List<CategoryVo> selectCategoryHeaderList(Model model) throws Exception {
-        List<CategoryVo> list=categoryService.selectCategoryHeaderList();
+    @RequestMapping(value = "/category/list", method = RequestMethod.GET)
+	public List<CategoryVo> selectCategoryList(Model model, @RequestParam("categoryNo") int categoryNo) throws Exception {
+        List<CategoryVo> list=categoryService.selectCategoryList(categoryNo);
         System.out.println("CategoryList:"+list.toString());
 
 		return list;
     }
     
     @ResponseBody
-    @RequestMapping(value = "/category/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/category/listNo", method = RequestMethod.GET)
 	public List<CategoryVo> getCategoryList(Model model) throws Exception {
         int categoryNo=1;
         List<CategoryVo> list=categoryService.getCategoryList(categoryNo);

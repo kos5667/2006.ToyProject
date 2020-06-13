@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CategoryMapper {
 
-    List<CategoryVo> selectCategoryHeaderList() throws Exception;
+    List<CategoryVo> selectCategoryList(int categoryNo) throws Exception;
 
     List<CategoryVo> getCategoryList(int categoryNo) throws Exception;
 }

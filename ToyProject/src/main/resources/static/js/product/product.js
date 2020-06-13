@@ -2,13 +2,22 @@ function btnClick(){
     alert("클릭 이벤트");
 }
 
-function selectProductList(no){
+function selectProductList(e){
+  event.preventDefault();
+  event.stopPropagation();
+
+  let categoryNo=e;
+  if(isNaN(categoryNo)){
+    categoryNo=e.target.dataset.categoryNo;
+    
+  }
+
     const listElement = document.querySelector('.cards');
     
     
     $.ajax({
         data: {
-            category_no: no
+          "categoryNo" : categoryNo
         },
         url: "/product/list2",
         type: 'GET',
@@ -54,33 +63,44 @@ function selectProductList(no){
     }); //ajax end
 }
 
-function getCategoryList(){
-    const listElement = document.querySelector('.title');
-    
+function childCategoryList(e){
+  let categoryNo=e;
+  if(isNaN(categoryNo)){
+    e.stopPropagation()
+    categoryNo=e.target.dataset.categoryNo;
+  }
+  const listElement = document.getElementById("liId"+categoryNo);
+
     $.ajax({
         data: {
-            // CATEGORY_NO: CATEGORY_NO
+            "categoryNo" : categoryNo
         },
         url: "/category/list",
         type: 'GET',
         dataType : "json",
         success: function(list) {
-            let depth;
-            for(let i=0; i<list.length-1;i++){
-                let data=list[i];
-                let data2=list[i+1]; 
+            
+            while(listElement.firstElementChild) {
+              listElement.removeChild(listElement.firstElementChild);
+            }
+            for(let i=0; i<list.length;i++){
+                let category=list[i];
 
-    
-     
+              //   const itemElement2 = document.createElement('i');
+              //   itemElement2.id="iId"+category.category_no;
+              //   itemElement2.dataset.categoryNo=category.category_no;
+              //   itemElement2.className="dropdown icon";
+              //  itemElement2.addEventListener('click', childCategoryList);
 
-                //const itemElement = document.createElement('div');
-                //itemElement.classList.value = 'card';
-                //itemElement.innerHTML = ``;
-               // listElement.append(itemElement);
-                
-                
+                const itemElement = document.createElement('li');
+                itemElement.id="liId"+category.category_no;
+                itemElement.dataset.categoryNo=category.category_no;
+                itemElement.textContent=category.name;
+               itemElement.addEventListener('click', selectProductList);
 
-
+            //   listElement.append(itemElement2);
+               listElement.append(itemElement);
+               
             }
             
 
@@ -92,7 +112,6 @@ function getCategoryList(){
 
 
 function productListMain(){
-    console.log("product.sj 로드");
 
     $('.ui.accordion')
     .accordion()

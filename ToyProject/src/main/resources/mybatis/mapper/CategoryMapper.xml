@@ -11,9 +11,18 @@
 -->
 
 
-    <select id="selectCategoryHeaderList" resultType="com.ToyProject.category.vo.CategoryVo">
-		  SELECT * FROM CATEGORY WHERE DEPTH=1;
+    <select id="selectCategoryList" resultType="com.ToyProject.category.vo.CategoryVo" parameterType="int">
+		  SELECT * FROM CATEGORY WHERE 
+      <if test='categoryNo == 0'>
+        UP_ID IS NULL
+      </if>
+      <if test='categoryNo != 0'>
+        UP_ID = #{categoryNo}
+      </if>
+     
     </select>
+
+
 
 
   <select id="getCategoryList" resultType="com.ToyProject.category.vo.CategoryVo" parameterType="int">
@@ -35,7 +44,19 @@
         JOIN CATEGORY b ON a.CATEGORY_NO = b.UP_ID
         )
 
-        SELECT CATEGORY_NO, UP_ID, NAME, PATH FROM CTE ORDER BY PATH;
+        		SELECT 
+        CATEGORY_NO,
+        UP_ID,
+        NAME, 
+        ''  PATH 
+        FROM CATEGORY WHERE #{categoryNo}
+		union 
+        SELECT 
+        CATEGORY_NO, 
+        UP_ID,
+        NAME, 
+        PATH 
+        FROM CTE ORDER BY PATH;
   </select>
   
 </mapper>
