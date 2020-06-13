@@ -1,0 +1,16 @@
+insert into PRODUCT(NAME, CATEGORY_NO)
+	VALUES("1번책", 1);
+insert into PRODUCT(NAME, CATEGORY_NO)
+	VALUES("2번책", 2);
+insert into PRODUCT(NAME, CATEGORY_NO)
+	VALUES("3번책", 2);
+insert into PRODUCT(NAME, CATEGORY_NO)
+	VALUES("4번책", 4);
+insert into PRODUCT(NAME, CATEGORY_NO)
+	VALUES("5번책", 10);
+insert into PRODUCT(NAME, CATEGORY_NO)
+	VALUES("6번책", 10);
+insert into PRODUCT(NAME, CATEGORY_NO)
+	VALUES("7번책", 8);
+insert into PRODUCT(NAME, CATEGORY_NO)
+	VALUES("8번책", 12);

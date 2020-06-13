@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/default" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default" -->
+  
+  
+<div layout:fragment="content">   
+
+    <style>
+        .left-box {
+          float: left;
+          width: 20%;
+        }
+        .right-box {
+          float: right;
+          width: 80%;
+        }
+    </style>
+      
+  <script th:src="@{/js/product/product.js}"></script>
+
+    <div class='left-box'>
+      <ul th:each="category : ${categoryList}">
+        <i class="dropdown icon" th:onclick="|childCategoryList('${category.category_no}')|"></i>
+        <li th:text="${category.name}" th:onclick="|selectProductList('${category.category_no}')|" 
+             th:with="liId='liId'+${category.category_no}" th:id="${liId}" th:data-category-no="${category.category_no}">
+        </li>
+      </ul>
+
+      
+
+      <div class="ui styled accordion" style="width:300px;">
+        <div class="active title">
+          <i class="dropdown icon"></i>
+          <a onclick="selectProductList(1)">소설</a>
+        </div>
+        <div class="active content">
+          <div class="accordion">
+            <div class="active title">
+                <i class="dropdown icon"></i>
+                <a onclick="selectProductList(2)">한국소설</a>
+            </div>
+            <div class="active content">
+                <div class="accordion">
+                  <div class="active title">
+                    <a onclick="selectProductList(3)">2000년대 이전</a><br>
+                    <a href='/testPage'>2000년대 이후</a>
+                  </div>
+                    <div class="ative content">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="active title">
+                <i class="dropdown icon"></i>
+                <a href='/testPage'>일본소설</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+
+    <div class='right-box'>
+      <div class="ui link cards">
+            <div class="card" th:each="product : ${productList}">
+                <div class="image">
+                  <!-- <img th:src="@{/images/kristy.png}"> -->
+                </div>
+                <div class="content">
+                  <div class="header"><dd th:text="${product.name}"></dd></div>
+                  <div class="meta">
+                    <a>Friends</a>
+                  </div>
+                  <div class="description">
+                    <dd th:text="${product.product_no}"></dd>
+                  </div>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                    Joined in 2013
+                  </span>
+                  <span>
+                    <i class="user icon"></i>
+                    
+                  </span>
+                </div>
+              </div>
+      </div>
+
+    </div>
+  
+</div>
+
+
+</html>

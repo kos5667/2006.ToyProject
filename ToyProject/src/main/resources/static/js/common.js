@@ -7,7 +7,14 @@
      var script = document.createElement('script');
      script.src = url;
      script.onload = callback;
-
      document.getElementsByTagName('head')[0].appendChild(script);
  }
  */
+
+function main(){
+
+}
+
+
+
+document.addEventListener("DOMContentLoaded", main);

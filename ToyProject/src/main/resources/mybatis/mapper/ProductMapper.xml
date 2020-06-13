@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ToyProject.product.mapper.ProductMapper">
+<!--
+  <insert id="insertUser" parameterType="com.Toyproject.user.vo.UserVo">
+  INSERT INTO USERS (USER_NO,USER_ID,PASSWORD,NAME,EMAIL,PHONE,ZCODE,ADDR1,ADDR2,CRT_DT,UPD_DT,USE_YN,AUTH_CODE,POINT,GRADE)
+  VALUES
+  (#{USER_NO},#{USER_ID},#{PASSWORD},#{NAME},#{EMAIL},#{PHONE},#{ZCODE},#{ADDR1},#{ADDR2},#{CRT_DT},#{UPD_DT},#{USE_YN},#{AUTH_CODE},#{POINT},#{GRADE})
+  </INSERT>
+-->
+     <select id="selectProductList" resultType="com.ToyProject.product.vo.ProductVo">
+		  SELECT * FROM PRODUCT A
+      WHERE 
+    
+      CATEGORY_NO IN
+        <foreach collection="list" item="category" open="(" close=")" separator=",">
+          #{category.category_no}
+        </foreach>
+    </select>
+  
+</mapper>
+
