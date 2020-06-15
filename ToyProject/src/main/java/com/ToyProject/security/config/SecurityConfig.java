@@ -13,7 +13,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/", "/h2-console/**", "/favicon.ico","/**").permitAll() //url 접속을 허용해주는 코드
+                .antMatchers("/", "/h2-console/**", "/favicon.ico","/user/login","/user/form","**").permitAll() //url 접속을 허용해주는 코드
                 .anyRequest().authenticated()
                 .and().logout().logoutSuccessUrl("/").permitAll()
                 .and().headers().frameOptions().sameOrigin()
