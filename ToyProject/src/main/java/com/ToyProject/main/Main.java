@@ -26,20 +26,5 @@ public class Main {
 		return "index";
 	}
 	
-	//Method
-	/* @RequestMapping(value="mainPage", method=RequestMethod.GET)
-	public String mainPage() {
-		LOGGER.debug("\nmainPage :: "+this.getClass()+"\n");
-		String URL = "";
-		try {
-			URL += "/WEB-INF/jsp/main/main.jsp";
-		} catch (NullPointerException e) {
-			LOGGER.error("mainPage NullPointerException : " + e.getMessage());
-		} catch (IllegalArgumentException e) {
-			LOGGER.error("mainPage IllegalArgumentException : " + e.getMessage());
-		} catch (Exception e) {
-			LOGGER.error("mainPage Exception : " + e.getMessage());
-		}
-		return URL;
-	} */
+
 }

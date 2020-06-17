@@ -1,7 +1,6 @@
 package com.ToyProject.user.mapper;
 
 import java.util.List;
-import java.util.Map;
 import com.ToyProject.user.vo.TestVo;
 import org.apache.ibatis.annotations.Mapper;
 
