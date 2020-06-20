@@ -3,37 +3,38 @@ package com.ToyProject.user.vo;
 import java.util.Date;
 
 public class UserVo {
+    
+    private int userNo;      /*회원 일련번호*/
+    private String userId;      /*회원 아이디*/
+    private String password;    /*회원 비밀번호*/
+    private String name;        /*회원 이름*/
+    private String email;       /*회원 이메일*/
+    private String phone;       /*회원 전화번호*/
+    private String zcode;       /*우편번호*/
+    private String addr1;       /*주소2*/
+    private String addr2;       /*주소3*/
+    private Date crtDt;       /*생성일시*/
+    private Date updDt;       /*수정일시*/
+    private String useYn;       /*사용여부*/
+    private String authCode;    /*권한(유저, 어드민)*/
+    private int point;       /*포인트 보유금액*/
+    private String grade;       /*회원등급*/
 
-    private int user_no; 
-    private int user_id; 
-    private String password; 
-    private String name; 
-    private String email; 
-    private String phone;
-    private String zcode;
-    private String addr1; 
-    private String addr2;
-    private Date crt_dt;
-    private Date upd_dt; 
-    private String use_yn;
-    private String auth_code;
-    private int point;
-    private int grade;
 
-    public int getUser_no() {
-        return user_no;
+    public int getUserNo() {
+        return userNo;
     }
 
-    public void setUser_no(int user_no) {
-        this.user_no = user_no;
+    public void setUserNo(int userNo) {
+        this.userNo = userNo;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {
@@ -92,36 +93,36 @@ public class UserVo {
         this.addr2 = addr2;
     }
 
-    public Date getCrt_dt() {
-        return crt_dt;
+    public Date getCrtDt() {
+        return crtDt;
     }
 
-    public void setCrt_dt(Date crt_dt) {
-        this.crt_dt = crt_dt;
+    public void setCrtDt(Date crtDt) {
+        this.crtDt = crtDt;
     }
 
-    public Date getUpd_dt() {
-        return upd_dt;
+    public Date getUpdDt() {
+        return updDt;
     }
 
-    public void setUpd_dt(Date upd_dt) {
-        this.upd_dt = upd_dt;
+    public void setUpdDt(Date updDt) {
+        this.updDt = updDt;
     }
 
-    public String getUse_yn() {
-        return use_yn;
+    public String getUseYn() {
+        return useYn;
     }
 
-    public void setUse_yn(String use_yn) {
-        this.use_yn = use_yn;
+    public void setUseYn(String useYn) {
+        this.useYn = useYn;
     }
 
-    public String getAuth_code() {
-        return auth_code;
+    public String getAuthCode() {
+        return authCode;
     }
 
-    public void setAuth_code(String auth_code) {
-        this.auth_code = auth_code;
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
     }
 
     public int getPoint() {
@@ -132,22 +133,19 @@ public class UserVo {
         this.point = point;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 
     @Override
     public String toString() {
-        return "UserVo [addr1=" + addr1 + ", addr2=" + addr2 + ", auth_code=" + auth_code + ", crt_dt=" + crt_dt
+        return "UserVo [addr1=" + addr1 + ", addr2=" + addr2 + ", authCode=" + authCode + ", crtDt=" + crtDt
                 + ", email=" + email + ", grade=" + grade + ", name=" + name + ", password=" + password + ", phone="
-                + phone + ", point=" + point + ", upd_dt=" + upd_dt + ", use_yn=" + use_yn + ", user_id=" + user_id
-                + ", user_no=" + user_no + ", zcode=" + zcode + "]";
+                + phone + ", point=" + point + ", updDt=" + updDt + ", useYn=" + useYn + ", userId=" + userId
+                + ", userNo=" + userNo + ", zcode=" + zcode + "]";
     }
-
-
-    
 }

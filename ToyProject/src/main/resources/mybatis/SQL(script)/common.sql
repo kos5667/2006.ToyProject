@@ -23,15 +23,15 @@ CREATE TABLE USERS
     `NAME`       VARCHAR(45)    NOT NULL    COMMENT '회원 이름', 
     `EMAIL`      VARCHAR(45)    NOT NULL    COMMENT '회원 이메일', 
     `PHONE`      VARCHAR(45)    NOT NULL    COMMENT '회원 전화번호', 
-    `ZCODE`      VARCHAR(45)    NOT NULL    COMMENT '주소1', 
-    `ADDR1`      VARCHAR(45)    NOT NULL    COMMENT '주소2', 
-    `ADDR2`      VARCHAR(45)    NULL        COMMENT '주소3', 
+    `ZCODE`      VARCHAR(45)    NOT NULL    COMMENT '우편번호', 
+    `ADDR1`      VARCHAR(45)    NOT NULL    COMMENT '주소1', 
+    `ADDR2`      VARCHAR(45)    NULL        COMMENT '주소2', 
     `CRT_DT`     DATETIME       NOT NULL    COMMENT '생성일시', 
     `UPD_DT`     DATETIME       NOT NULL    COMMENT '수정일시', 
-    `USE_YN`     CHAR(1)        NOT NULL    COMMENT '사용여부', 
-    `AUTH_CODE`  INT            NOT NULL    COMMENT '권한(유저, 어드민)', 
+    `USE_YN`     CHAR(1)        NOT NULL    COMMENT '탈퇴여부', 
+    `AUTH_CODE`  CHAR(1)        NOT NULL    COMMENT '권한(user = 1, admin = 1)', 
     `POINT`      INT            NOT NULL    COMMENT '포인트 보유금액', 
-    `GRADE`      INT            NOT NULL    COMMENT '회원등급', 
+    `GRADE`      CHAR(1)        NOT NULL    COMMENT '회원등급', 
     PRIMARY KEY (USER_NO)
 );
 
