@@ -3,7 +3,7 @@
 
 <mapper namespace="com.ToyProject.user.mapper.UserMapper">
   
-  <resultMap id="userMap" type="com.ToyProject.user.vo.UserVO">
+  <!-- <resultMap id="userMap" type="com.ToyProject.user.vo.UserVO">
     <result property="userNo" column="USER_NO" jdbcType="NUMERIC"/>
     <result property="" column="USER_NO" jdbcType="INT"/>
     <result property="" column="USER_ID" jdbcType="VARCHAR"/>
@@ -20,9 +20,9 @@
     <result property="" column="AUTH_CODE" jdbcType="CHAR"/>
     <result property="" column="POINT" jdbcType="INT"/>
     <result property="" column="GRADE" jdbcType="CHAR"/>
-  </resultMap>
+  </resultMap> -->
 
-  <insert id="insertUser" parameterType="com.ToyProject.user.vo.UserVO">
+ <!--  <insert id="insertUser" parameterType="com.ToyProject.user.vo.UserVO">
   </insert>
 
   <select id="selectUser">
@@ -35,6 +35,6 @@
   </update>
 
   <update id="deleteUser">
-  </update>
+  </update> -->
   
 </mapper>

@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.ToyProject.user.service.UserService;
@@ -27,7 +26,6 @@ public class UserController {
 	//Method
 	@RequestMapping(value="loginUser", method=RequestMethod.GET)
 	public String loginUser() {
-
 		try {
 			
 		} catch (NullPointerException e) {
@@ -37,7 +35,7 @@ public class UserController {
 		} catch (Exception e) {
 			LOGGER.error("loginUser Exception : " + e.getMessage());
 		}
-		return "";
+		return "/user/loginUser.html";
 	}
 
 	@RequestMapping(value="insertUser", method=RequestMethod.GET)

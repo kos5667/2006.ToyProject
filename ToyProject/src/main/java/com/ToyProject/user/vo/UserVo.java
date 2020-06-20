@@ -2,7 +2,7 @@ package com.ToyProject.user.vo;
 
 import java.util.Date;
 
-public class UserVo {
+public class UserVO {
     
     private int userNo;      /*회원 일련번호*/
     private String userId;      /*회원 아이디*/
