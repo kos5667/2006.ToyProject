@@ -4,12 +4,11 @@
  */
 
 function fnSignIn(){
-    location.href = '/user/loginUser'
-    /* self.location = '/user/loginUser'; */
+    self.location = '/user/loginUserView';
 }
 
 function fnSignUp(){
-    self.location("/user/insertUser");
+    self.location= '/user/insertUserView';
 }
 /*  function loadScript(url, callback){
      var script = document.createElement('script');
