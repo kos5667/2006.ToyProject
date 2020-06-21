@@ -24,10 +24,9 @@ public class UserController {
 	}
 
 	//Method
-	@RequestMapping(value="loginUser", method=RequestMethod.GET)
-	public String loginUser() {
+	@RequestMapping(value="loginUserView", method=RequestMethod.GET)
+	public String loginUserView() {
 		try {
-			
 		} catch (NullPointerException e) {
 			LOGGER.error("loginUser NullPointerException : " + e.getMessage());
 		} catch (IllegalArgumentException e) {
@@ -38,11 +37,35 @@ public class UserController {
 		return "/user/loginUser.html";
 	}
 
+	@RequestMapping(value="loginUser", method=RequestMethod.GET)
+	public String loginUser() {
+		try {
+		} catch (NullPointerException e) {
+			LOGGER.error("loginUser NullPointerException : " + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			LOGGER.error("loginUser IllegalArgumentException : " + e.getMessage());
+		} catch (Exception e) {
+			LOGGER.error("loginUser Exception : " + e.getMessage());
+		}
+		return "";
+	}
+
+	@RequestMapping(value="insertUserView", method=RequestMethod.GET)
+	public String insertUserView() {
+		try {
+		} catch (NullPointerException e) {
+			LOGGER.error("insertUser NullPointerException : " + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			LOGGER.error("insertUser IllegalArgumentException : " + e.getMessage());
+		} catch (Exception e) {
+			LOGGER.error("insertUser Exception : " + e.getMessage());
+		}
+		return "/user/insertUser.html";
+	}
+
 	@RequestMapping(value="insertUser", method=RequestMethod.GET)
 	public String insertUser() {
-
 		try {
-			
 		} catch (NullPointerException e) {
 			LOGGER.error("insertUser NullPointerException : " + e.getMessage());
 		} catch (IllegalArgumentException e) {
