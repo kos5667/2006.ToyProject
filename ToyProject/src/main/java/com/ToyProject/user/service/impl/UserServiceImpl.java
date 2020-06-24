@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ToyProject.user.mapper.UserMapper;
 import com.ToyProject.user.service.UserService;
+import com.ToyProject.user.vo.UserVO;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService{
@@ -24,8 +25,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void selectUser() throws Exception {
+	public UserVO selectUser(UserVO userVO) throws Exception {
 		
+		return userVO;
 	}
 
 	@Override

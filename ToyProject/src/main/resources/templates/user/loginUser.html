@@ -2,8 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/default" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <div layout:fragment="content">
     <script>
+        $(function(){
 
+        })
+
+        function fnLogin(){
+            var email = jQuery('input[name=email]').val();
+            var password = jQuery('input[name=password]').val();
+            //Email 유효성 검사
+            var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            
+            if(email == '' || email == null){
+                alert("정확한 이메일을 입력해주세요.");
+                return
+            }
+
+            if(jQuery('input[name=password]').val() == '' || jQuery('input[name=password]').val() == null){
+                alert("정확한 패스워드를 입력해주세요.");
+                return
+            }
+
+            if(checkEmail.test(email) == false){
+                alert("적합하지 않은 이메일 형식입니다.");
+                return
+            }
+
+            jQuery.ajax({
+                url : '/user/loginUser',
+                type : "POST",
+                dataType: "json",
+                data : {
+                    userEmail : email,
+                    userPassword : password
+                },
+                success : function(data, status){
+                    console.log(data);
+                    console.log(status);
+                    console.log("들갔다왔다");
+                },
+                error:function(jqXHR, textStatus, errorThrown){
+                    alert(textStatus);
+                    alert(errorThrown);
+                }
+            });
+
+            
+
+        }
     </script>
+
             <div class="ui two column middle aligned center aligned grid" style="margin-top: 60%;">
                 <div class="column">
                     <h2 class="ui teal image header">
@@ -26,11 +73,11 @@
                                     <input type="password" name="password" placeholder="Password">
                                 </div>
                             </div>
-                            <div class="ui fluid large teal submit button">Login</div>
+                            <div class="ui fluid large teal submit button" onclick="fnLogin()">Login</div>
                         </div>
                     </form>
                     <div class="ui message">
-                        New to us? <a href="#">Sign Up</a>
+                        New to us? <a href="/user/insertUserView">Sign Up</a>
                     </div>
                 </div>
             </div>

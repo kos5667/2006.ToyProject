@@ -1,12 +1,19 @@
 package com.ToyProject.user.web;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.ToyProject.user.service.UserService;
+import com.ToyProject.user.vo.UserVO;
 
 
 @Controller
@@ -37,9 +44,17 @@ public class UserController {
 		return "/user/loginUser.html";
 	}
 
-	@RequestMapping(value="loginUser", method=RequestMethod.GET)
-	public String loginUser() {
+	@RequestMapping(value="loginUser", method=RequestMethod.POST)
+	public ModelAndView loginUser(@RequestParam String userEmail, @RequestParam String userPassword, ModelMap modelMap) {
+		UserVO userVO = new UserVO();
 		try {
+			//userService.selectUser(userVO);
+			userVO.setEmail(userEmail);
+			userVO.setPassword(userPassword);
+			System.out.println(userEmail);
+			System.out.println(userPassword);
+
+			modelMap.addAttribute("userVO" ,userVO);
 		} catch (NullPointerException e) {
 			LOGGER.error("loginUser NullPointerException : " + e.getMessage());
 		} catch (IllegalArgumentException e) {
@@ -47,7 +62,7 @@ public class UserController {
 		} catch (Exception e) {
 			LOGGER.error("loginUser Exception : " + e.getMessage());
 		}
-		return "";
+		return new ModelAndView("jsonView", modelMap);
 	}
 
 	@RequestMapping(value="insertUserView", method=RequestMethod.GET)
