@@ -4,11 +4,11 @@
 <mapper namespace="com.ToyProject.account.AccountRepository">
 
 
-  <insert id="insertAccount" parameterType="com.ToyProject.user.vo.TestVo">
+  <insert id="insertAccount" parameterType="com.ToyProject.account.Account">
   INSERT INTO USERS 
-  (USER_NO, USER_ID, PASSWORD)
+  (USER_NO, USERNAME, PASSWORD, ROLE)
   VALUES
-  (#{USER_NO},#{USER_ID},#{PASSWORD})
+  (#{USER_NO},#{username},'password','ROLE_USER')
   </insert>
 
 

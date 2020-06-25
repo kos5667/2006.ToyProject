@@ -24,7 +24,7 @@ public class AccountService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         final Account account = accounts.findByEmail(username);
-
+        System.out.println("hello");
 
         final UserDetails userDetails = new UserDetails() {
 
@@ -37,6 +37,7 @@ public class AccountService implements UserDetailsService {
             public Collection<? extends GrantedAuthority> getAuthorities() {
             List <GrantedAuthority> authorities= new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("ADMIN_ROLE"));
+          
             System.out.println(authorities);
                 return authorities;
             }
@@ -50,7 +51,7 @@ public class AccountService implements UserDetailsService {
             @Override
             public String getUsername() {
                 
-                return account.getEmail();
+                return account.getUsername();
             }
 
             @Override

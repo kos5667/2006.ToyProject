@@ -1,29 +1,66 @@
 package com.ToyProject.account;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class Account implements UserDetails{
+
+//domain fileds (사용자의 개인정보)    
+    private Integer USER_NO;
+
+   
 
 
-public class Account{
+// security fields (인증에 필요한 정보)
 
-    private Integer id;
-
-    private String email;
+    private String username;
     
     private String password;
 
-    public Integer getId() {
-        return id;
+    private Collection<? extends GrantedAuthority> authorities;
+
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
     }
 
-    public String getEmail() {
-        return email;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    public Integer getUSER_NO() {
+        return USER_NO;
+    }
+
+    public void setUSER_NO(Integer uSER_NO) {
+        USER_NO = uSER_NO;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -33,5 +70,25 @@ public class Account{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    @Override
+    public String toString() {
+        return "Account [USER_NO=" + USER_NO + ", authorities=" + authorities + ", password=" + password + ", username="
+                + username + "]";
+    }
+
+    
+
+
+
+
     
 }

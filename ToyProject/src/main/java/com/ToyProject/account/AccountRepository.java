@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import com.ToyProject.user.vo.TestVo;
+
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,14 @@ public class AccountRepository {
 
     public Account save(Account account) {
 
-        account.setId(random.nextInt());
-        accounts.put(account.getEmail(), account);
+        account.setUSER_NO(random.nextInt());
+        
+
+        accounts.put(account.getUsername(), account);
+        System.out.println(account);
+        
+        sqlSession.insert("insertAccount",account);
+       
         return account;
 
     }
@@ -32,8 +38,6 @@ public class AccountRepository {
         return accounts.get(username);
     }
 
-    public TestVo get(String email) {
-        return sqlSession.selectOne("user.getByEmail", email);
-    }
+
 
 }
