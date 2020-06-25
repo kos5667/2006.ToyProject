@@ -19,12 +19,30 @@ public class UserServiceImpl implements UserService{
 	UserMapper userMapper;
 
 	@Override
-	public int selectUser() throws Exception {
-		Map<String,Object> map = userMapper.selectUser();
-		LOGGER.debug("Result = "+map);
+	public void insertUser() throws Exception {
 		
-		return 1;
 	}
+
+	@Override
+	public void selectUser() throws Exception {
+		
+	}
+
+	@Override
+	public void selectUserList() throws Exception {
+		
+	}
+
+	@Override
+	public void updateUser() throws Exception {
+		
+	}
+
+	@Override
+	public void deleteUser() throws Exception {
+		
+	}
+
 
 
 }

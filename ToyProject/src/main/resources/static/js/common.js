@@ -3,6 +3,13 @@
  * footer.html
  */
 
+function fnSignIn(){
+    self.location = '/user/loginUserView';
+}
+
+function fnSignUp(){
+    self.location= '/user/insertUserView';
+}
 /*  function loadScript(url, callback){
      var script = document.createElement('script');
      script.src = url;
