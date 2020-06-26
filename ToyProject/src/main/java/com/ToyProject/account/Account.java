@@ -7,7 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class Account implements UserDetails{
 
-//domain fileds (사용자의 개인정보)    
+    /**
+    	 *
+    	 */
+    private static final long serialVersionUID = -8919707875036977513L;
+
+    // domain fileds (사용자의 개인정보)
     private Integer USER_NO;
 
    
@@ -25,25 +30,25 @@ public class Account implements UserDetails{
 
     @Override
     public boolean isAccountNonExpired() {
-        // TODO Auto-generated method stub
+        
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // TODO Auto-generated method stub
+        
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        // TODO Auto-generated method stub
+        
         return true;
     }
 
     @Override
     public boolean isEnabled() {
-        // TODO Auto-generated method stub
+       
         return true;
     }
 

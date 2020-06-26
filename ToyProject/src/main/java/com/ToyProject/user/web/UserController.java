@@ -3,12 +3,19 @@ package com.ToyProject.user.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+
 import com.ToyProject.user.service.UserService;
 import com.ToyProject.user.vo.TestVo;
+
 
 @Controller
 public class UserController {
@@ -22,6 +29,22 @@ public class UserController {
 
 		return "/user/login";
 	}
+
+
+	@RequestMapping(value= "/product/productList", method = RequestMethod.GET)
+	public String getProductList(Model model, HttpSession session){
+		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		System.out.println(name);
+		
+		
+		session.setAttribute("userId", name);
+
+		
+		return "/product/productList";
+	}
+
+
 
 	@RequestMapping(value = "/user/form", method = RequestMethod.GET)
 	public String getinsertUserform(Model model) {

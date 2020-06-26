@@ -13,4 +13,8 @@
 
 
 
+  <select id="selectAccount" parameterType="com.ToyProject.account.Account" resultType="com.ToyProject.account.Account" >
+  SELECT * FROM USERS WHERE USERNAME=#{username} AND PASSWORD='password';
+  </select>
+
 </mapper>

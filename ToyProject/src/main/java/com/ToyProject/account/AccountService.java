@@ -23,8 +23,20 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        final Account account = accounts.findByEmail(username);
-        System.out.println("hello");
+         Account account = accounts.findByEmail(username); //레포지토리에 accounts에 데이터가 있으면, 자동적으로 셋팅됨.
+        if(account==null){
+            System.out.println("null일 경우에는////////////////"+account);
+
+        }
+        
+
+       
+       //null일경우 db에서 select해서 동기화 시켜야되는데 못하겠음.
+
+
+       
+        
+        
 
         final UserDetails userDetails = new UserDetails() {
 
@@ -35,11 +47,9 @@ public class AccountService implements UserDetailsService {
 
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-            List <GrantedAuthority> authorities= new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority("ADMIN_ROLE"));
-          
-            System.out.println(authorities);
-                return authorities;
+                List <GrantedAuthority> authorities= new ArrayList<>();
+                authorities.add(new SimpleGrantedAuthority("ADMIN_ROLE"));
+                    return authorities;
             }
 
             @Override
@@ -88,6 +98,13 @@ public class AccountService implements UserDetailsService {
 	public Account save(Account acc) {
         acc.setPassword(passwordEncoder.encode(acc.getPassword()));
         return accounts.save(acc);
+	}
+
+	public Account selectAuthUser(Account acc) {
+        acc.setUsername("kpkim");
+        acc.setPassword("password");
+        
+        return accounts.selectAuthUser(acc);
 	} 
 
 
