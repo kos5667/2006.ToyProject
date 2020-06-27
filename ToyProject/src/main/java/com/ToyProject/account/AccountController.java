@@ -18,11 +18,7 @@ public class AccountController {
         Account acc= new Account();
         acc.setEmail("themapisto@naver.com");
         acc.setPassword("password");
-        
-        
         return accountService.save(acc);
-         
-
     }
 
 }
