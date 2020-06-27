@@ -26,7 +26,7 @@ public class LogAspectJ {
 	//Around  Advice
 	@Around("execution(* com.ToyProject..*Controller.*(..))")
 	//@Around("execution(* get*(..))")
-	public Object invoke(ProceedingJoinPoint pJP)  {
+	public Object invoke(ProceedingJoinPoint pJP) throws Throwable {
 		
 		Object result = null;
         try {
@@ -38,8 +38,10 @@ public class LogAspectJ {
             System.out.println("수행 시간 : "+ (end - start));
             System.out.println("============================");
         } 
-        catch (Throwable throwable) {
-            System.out.println("exception! ");
+        catch (Exception e) {
+            String message= e.getMessage();
+            System.out.println("exception! "+message);
+            e.printStackTrace();
         }
         return result;
 	}

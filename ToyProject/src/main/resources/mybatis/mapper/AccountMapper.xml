@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ToyProject.account.AccountRepository">
+
+
+  <insert id="insertAccount" parameterType="com.ToyProject.account.Account">
+  INSERT INTO USER 
+  (USER_NO, USERNAME, PASSWORD, ROLE)
+  VALUES
+  (#{USER_NO},#{username},'password','ROLE_USER')
+  </insert>
+
+update 
+
+  <select id="selectAccount" parameterType="com.ToyProject.account.Account" resultType="com.ToyProject.account.Account" >
+  SELECT * FROM USERS WHERE USERNAME=#{username} AND PASSWORD='password';
+  </select>
+
+</mapper>

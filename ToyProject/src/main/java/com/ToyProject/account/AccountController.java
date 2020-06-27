@@ -16,9 +16,10 @@ public class AccountController {
     public Account create() {
         
         Account acc= new Account();
-        acc.setEmail("themapisto@naver.com");
+        acc.setUsername("kpkim");
         acc.setPassword("password");
         return accountService.save(acc);
     }
+
 
 }
