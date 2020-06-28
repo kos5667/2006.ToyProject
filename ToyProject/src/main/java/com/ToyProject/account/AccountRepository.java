@@ -23,31 +23,20 @@ public class AccountRepository {
     public Account save(Account account) {
 
         account.setUSER_NO(random.nextInt());
+        
+
         accounts.put(account.getUsername(), account);
+        System.out.println(account);
+        
         sqlSession.insert("insertAccount",account);
        
         return account;
 
     }
 
-    
-
-
-
     public Account findByEmail(String username) {
-        
         return accounts.get(username);
     }
-
-
-
-
-
-	public Account selectAuthUser(Account account) {
-        
-        sqlSession.selectList("selectAccount", account);
-        return account;
-	}
 
 
 
