@@ -24,7 +24,8 @@ public class AccountService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
          Account account = accounts.findByEmail(username); //레포지토리에 accounts에 데이터가 있으면, 자동적으로 셋팅됨.
-        if(account==null){
+        if(account==null){ //레포지토리에 account가 없을 경우: 방법 1 
+            //
             System.out.println("null일 경우에는////////////////"+account);
 
         }
@@ -101,9 +102,8 @@ public class AccountService implements UserDetailsService {
 	}
 
 	public Account selectAuthUser(Account acc) {
-        acc.setUsername("kpkim");
-        acc.setPassword("password");
         
+        System.out.println(acc);
         return accounts.selectAuthUser(acc);
 	} 
 

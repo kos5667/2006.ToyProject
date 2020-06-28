@@ -24,7 +24,8 @@ public class AccountController {
 
     @GetMapping("/select")
     public Account selectAuthUser(Account acc){
-       
+        acc.setUsername("kpkim");
+        acc.setPassword("password");
         
         
         return accountService.selectAuthUser(acc);
