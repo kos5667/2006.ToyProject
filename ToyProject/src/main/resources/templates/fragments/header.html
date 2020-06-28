@@ -3,10 +3,13 @@
     <header th:fragment="headerFragment">
       <div class="ui stackable menu">
         <div class="item">
-          <!-- <img class="" src="/images/logo.png"> -->
+         
         </div>
         <a class="item" onclick="fnSignIn()">Sign-in</a>
         <a class="item" onclick="fnSignUp()">Sign-up</a>
       </div>
+
+      <script th:src="@{/js/header.js}"></script>
+
     </header>
 </html>
