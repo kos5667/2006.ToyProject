@@ -40,6 +40,7 @@ public class UserController {
 	@RequestMapping(value="loginUser", method=RequestMethod.GET)
 	public String loginUser() {
 		try {
+			
 		} catch (NullPointerException e) {
 			LOGGER.error("loginUser NullPointerException : " + e.getMessage());
 		} catch (IllegalArgumentException e) {
