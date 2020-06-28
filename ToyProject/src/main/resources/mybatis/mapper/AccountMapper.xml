@@ -5,13 +5,13 @@
 
 
   <insert id="insertAccount" parameterType="com.ToyProject.account.Account">
-  INSERT INTO USERS 
+  INSERT INTO USER 
   (USER_NO, USERNAME, PASSWORD, ROLE)
   VALUES
   (#{USER_NO},#{username},'password','ROLE_USER')
   </insert>
 
-
+update 
 
   <select id="selectAccount" parameterType="com.ToyProject.account.Account" resultType="com.ToyProject.account.Account" >
   SELECT * FROM USERS WHERE USERNAME=#{username} AND PASSWORD='password';

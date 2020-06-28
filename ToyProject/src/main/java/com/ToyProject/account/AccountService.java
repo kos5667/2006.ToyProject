@@ -27,7 +27,7 @@ public class AccountService implements UserDetailsService {
         if(account==null){ //레포지토리에 account가 없을 경우: 방법 1 
             //
             System.out.println("null일 경우에는////////////////"+account);
-
+            accounts.selectAuthUser(account);
         }
         
 
@@ -98,6 +98,7 @@ public class AccountService implements UserDetailsService {
 
 	public Account save(Account acc) {
         acc.setPassword(passwordEncoder.encode(acc.getPassword()));
+        
         return accounts.save(acc);
 	}
 

@@ -18,7 +18,6 @@ public class AccountController {
         Account acc= new Account();
         acc.setUsername("kpkim");
         acc.setPassword("password");
-        
         return accountService.save(acc);
     }
 
