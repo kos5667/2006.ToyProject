@@ -18,12 +18,16 @@ public class AccountController {
         Account acc= new Account();
         acc.setUsername("kpkim");
         acc.setPassword("password");
-        
-        System.out.println(acc);
-        
         return accountService.save(acc);
          
 
+    @GetMapping("/select")
+    public Account selectAuthUser(Account acc){
+        acc.setUsername("kpkim");
+        acc.setPassword("password");
+        
+        
+        return accountService.selectAuthUser(acc);
     }
 
 }

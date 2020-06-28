@@ -23,8 +23,26 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+<<<<<<< HEAD
         final Account account = accounts.findByEmail(username);
         System.out.println("hello");
+=======
+         Account account = accounts.findByEmail(username); //레포지토리에 accounts에 데이터가 있으면, 자동적으로 셋팅됨.
+        if(account==null){ //레포지토리에 account가 없을 경우: 방법 1 
+            //
+            System.out.println("null일 경우에는////////////////"+account);
+            accounts.selectAuthUser(account);
+        }
+        
+
+       
+       //null일경우 db에서 select해서 동기화 시켜야되는데 못하겠음.
+
+
+       
+        
+        
+>>>>>>> 75e09c0861ac63a1d93a1309e9125c800c0a8101
 
         final UserDetails userDetails = new UserDetails() {
 
@@ -87,7 +105,14 @@ public class AccountService implements UserDetailsService {
 
 	public Account save(Account acc) {
         acc.setPassword(passwordEncoder.encode(acc.getPassword()));
+        
         return accounts.save(acc);
+	}
+
+	public Account selectAuthUser(Account acc) {
+        
+        System.out.println(acc);
+        return accounts.selectAuthUser(acc);
 	} 
 
 
