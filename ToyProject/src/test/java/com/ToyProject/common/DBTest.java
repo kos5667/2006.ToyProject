@@ -15,7 +15,7 @@ public class DBTest {
 	
 	@Test
 	public void connTest() throws Exception {
-		//userService.selectUser();
+		userService.selectUser("kpkim");
 	}
 
 }

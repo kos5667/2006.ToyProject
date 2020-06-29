@@ -13,6 +13,7 @@ public class AccountController {
 
 
     @GetMapping("/create")
+   
     public Account create() {
         
         Account acc= new Account();
@@ -21,14 +22,8 @@ public class AccountController {
         
         return accountService.save(acc);
     }
-
-    @GetMapping("/select")
-    public Account selectAuthUser(Account acc){
-       
-        
-        
-        return accountService.selectAuthUser(acc);
-    }
+    //바로 이상한걸 타버리네? 
+    
 
 
 }

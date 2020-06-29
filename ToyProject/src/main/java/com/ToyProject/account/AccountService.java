@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.ToyProject.user.mapper.UserMapper;
+import com.ToyProject.user.vo.TestVo;
+import com.mysql.cj.protocol.Security;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,28 +21,34 @@ import org.springframework.stereotype.Service;
 public class AccountService implements UserDetailsService {
 
     @Autowired
-    private  AccountRepository accounts;
+    private AccountRepository accounts;
     @Autowired
-    private  PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
+  
     @Override
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-         Account account = accounts.findByEmail(username); //레포지토리에 accounts에 데이터가 있으면, 자동적으로 셋팅됨.
-        if(account==null){
-            System.out.println("null일 경우에는////////////////"+account);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 레포지토리에 accounts에 데이터가 있으면, 자동적으로 셋팅됨.
+        // Account account = accounts.findByEmail(username);
+        System.out.println(username); //kpkim
+        Account userVo=new Account();
+        userVo.setUsername(username);
+        userVo.setPassword("password");
+        System.out.println(userVo); //kpkim이 들어간 객체 
+        
+        //if username이 db에 저장이 되있으면 repository에 저장해라 로직 구현
+        Account buserVo=save(userVo);
+        accounts.save(userVo); //현재 여기서 encode decode 에러가 남
 
+        Account account= accounts.findByEmail(username); //여기서 에러가 나는듯.
+        if (account==null){
+            accounts.save(userVo);
         }
-        
-
-       
-       //null일경우 db에서 select해서 동기화 시켜야되는데 못하겠음.
-
-
        
         
         
 
-        final UserDetails userDetails = new UserDetails() {
+         UserDetails userDetails = new UserDetails() {
 
             /**
              *

@@ -41,8 +41,6 @@ public class AccountRepository {
 
 
 
-
-
 	public Account selectAuthUser(Account account) {
         
         sqlSession.selectList("selectAccount", account);
