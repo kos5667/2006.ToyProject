@@ -5,6 +5,10 @@
         <title>Hello World!</title>
     </head>
     <body>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <p>로그인 하고들어오세요. <a th:href="@{/product/productList}">Login</a> 
+            <p>아이디 만들기 <a th:href="@{/create}">Create</a> 
+        </sec:authorize>
         <h1>Hello world!</h1>
     </body>
 </html>

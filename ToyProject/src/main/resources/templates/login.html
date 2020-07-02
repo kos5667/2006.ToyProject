@@ -11,10 +11,21 @@
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            This content will only be visible to users who have the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
+        </sec:authorize>
+ 
+        
         <form th:action="@{/login}" method="post">
             <div><label> User Name : <input type="text" name="username"/> </label></div>
             <div><label> Password: <input type="password" name="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
+
+
+        <sec:authorize access="hasRole('ROLE_USER')">
+            This content will only be visible to users who have the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
+    </sec:authorize>
+
     </body>
 </html>

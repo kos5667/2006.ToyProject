@@ -75,7 +75,7 @@ public class UserController {
  * 
  */
 	
-	@RequestMapping(value = "/user/selectuser", method = RequestMethod.POST)
+/* 	@RequestMapping(value = "/user/selectuser", method = RequestMethod.POST)
 	public String idCheck (TestVo userVO, Model model) throws Exception {
 		
 
@@ -105,7 +105,7 @@ public class UserController {
 		return "index";
 
 
-	}
+	} */
 
 
 

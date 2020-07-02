@@ -1,37 +1,28 @@
+
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default">
-
-
-
-
-
-
-
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+layout:decorator="layout/default"
+>
 <div layout:fragment="content">
-
-    <div style="border:1px solid red; height: 500px; font-size: 40px; text-align: center; padding:50px">
-       
-
-<!--
-        <div style="float: right">
-        <input type='button' onClick="location.href='/user/form'" id="button2" value='create'/>
-        <input type='button' onClick="location.href='/user/login'" id="button1" value='login'/>
-        </div>
--->
-
-
-
-        
-
-        <p>로그인 하고들어오세요. <a th:href="@{/product/productList}">Product</a> 
-        <p>아이디 만들기 <a th:href="@{/create}">Create</a> 
-
-
-    </div>
-
     
+    <sec:authorize access="hasRole('ROLE_USER')">
+        This content will only be visible to users who have the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
+    </sec:authorize>    
+    
+    
+    <div style="border:1px solid red; height: 500px; font-size: 40px; text-align: center; padding:50px">
+        <p>로그인 하고들어오세요. <a th:href="@{/product/productList}">Login</a> 
+        <p>아이디 만들기 <a th:href="@{/create}">Create</a> 
+    </div>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                This content will only be visible to users who have the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
+            </sec:authorize>
 
-
+            
+          
 </div>
 
 </html>

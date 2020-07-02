@@ -24,6 +24,7 @@ public class AccountRepository {
 
         account.setUSER_NO(random.nextInt());
         accounts.put(account.getUsername(), account);
+        
         sqlSession.insert("insertAccount",account);
        
         return account;

@@ -1,6 +1,7 @@
 package com.ToyProject.account;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,16 +35,14 @@ public class AccountService implements UserDetailsService {
         Account userVo=new Account();
         userVo.setUsername(username);
         userVo.setPassword("password");
+        userVo.setAuthorities(Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
         System.out.println(userVo); //kpkim이 들어간 객체 
         
         //if username이 db에 저장이 되있으면 repository에 저장해라 로직 구현
-        Account buserVo=save(userVo);
-        accounts.save(userVo); //현재 여기서 encode decode 에러가 남
-
-        Account account= accounts.findByEmail(username); //여기서 에러가 나는듯.
-        if (account==null){
-            accounts.save(userVo);
-        }
+        Account buserVo=save(userVo);// encoding해라
+        Account account= accounts.findByEmail(username); //인증 
+        System.out.println(account);
+        System.out.println(account.getAuthorities());
        
         
         
@@ -58,7 +57,7 @@ public class AccountService implements UserDetailsService {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
                 List <GrantedAuthority> authorities= new ArrayList<>();
-                authorities.add(new SimpleGrantedAuthority("ADMIN_ROLE"));
+                authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
                     return authorities;
             }
 

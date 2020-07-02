@@ -11,10 +11,10 @@
 -->
 
   <insert id="insertUser" parameterType="com.ToyProject.user.vo.TestVo">
-  INSERT INTO USERS 
-  (USER_NO, USER_ID, PASSWORD)
+ INSERT INTO USERS 
+  (USER_NO, USERNAME, PASSWORD, ROLE)
   VALUES
-  (#{USER_NO},#{USER_ID},#{PASSWORD})
+  (#{USER_NO},#{username},#{password},'ROLE_USER')
   </insert>
 
 

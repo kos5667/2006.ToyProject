@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
@@ -10,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    
     <style>
  
  
@@ -35,14 +35,27 @@
             상품
             <br>
 
+            
             <span th:text="${session.userId}" style="color: brown; font-size: 20px;" ></span> <span style="font-size: 20px;">님 안녕하세요^^</span> 
-        
+            
+            
+            <button id="menu" class="logout">로그아웃</button>
+           
 
+          
+
+            
         </div>
         <script>
             $('#menu').click(function(){
                 $('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');
             })
+
+            $('.logout').click(function(){
+               alert("아직 연결안됨");
+            })
+
+
         </script>
     </body>
 </html>
