@@ -22,12 +22,64 @@
     <result property="" column="GRADE" jdbcType="CHAR"/>
   </resultMap>
 
- <!--  <insert id="insertUser" parameterType="com.ToyProject.user.vo.UserVO">
+  <insert id="insertUser" parameterType="com.ToyProject.user.vo.UserVO">
+  	INSERT INTO users(
+	  	   USER_ID,
+	  	   PASSWORD,
+	  	   NAME,
+	  	   EMAIL,
+	  	   PHONE,
+	  	   ZCODE,
+	  	   ADDR1,
+	  	   ADDR2,
+	  	   USE_YN,
+	  	   AUTH_CODE,
+	  	   CRT_DT,
+	  	   UPD_DT,
+	  	   GRADE
+	  	   )
+  	VALUES(
+  	       #{userId},
+  	       #{password},
+  	       #{name},
+  	       #{email},
+  	       #{phone},
+  	       #{zcode},
+  	       #{addr1},
+  	       #{addr2},
+  	       #{useYn},
+  	       #{authCode},
+  	       #{crtDt},
+	  	   #{updDt},
+  	       #{grade}
+  	 )
+  	
+  	
+  	
   </insert>
--->
 
   <select id="selectUser" parameterType="com.ToyProject.user.vo.UserVO" resultMap="userMap">
-
+	 SELECT 
+	       USER_NO,
+	 	   USER_ID,
+	  	   PASSWORD,
+	  	   NAME,
+	  	   EMAIL,
+	  	   PHONE,
+	  	   ZCODE,
+	  	   ADDR1,
+	  	   ADDR2,
+	  	   USE_YN,
+	  	   AUTH_CODE,
+	  	   CRT_DT,
+	  	   UPD_DT,
+	  	   GRADE,
+	  	   POINT
+	   FROM users
+	  WHERE USER_ID = #{userId}
+	  <if test ="password!=null and !password.equals('')">
+	  	 AND PASSWORD = #{password}
+	  </if>	  	   
   </select>
 
   <!--

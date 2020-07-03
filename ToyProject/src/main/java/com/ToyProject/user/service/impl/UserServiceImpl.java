@@ -1,5 +1,6 @@
 package com.ToyProject.user.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ToyProject.user.mapper.UserMapper;
 import com.ToyProject.user.service.UserService;
+import com.ToyProject.user.vo.UserVO;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService{
@@ -19,13 +21,8 @@ public class UserServiceImpl implements UserService{
 	UserMapper userMapper;
 
 	@Override
-	public void insertUser() throws Exception {
-		
-	}
-
-	@Override
-	public void selectUser() throws Exception {
-		
+	public void insertUser(UserVO vo) throws Exception {
+		userMapper.insertUser(vo);
 	}
 
 	@Override
@@ -41,6 +38,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void deleteUser() throws Exception {
 		
+	}
+
+	@Override
+	public List<UserVO> selectUser(UserVO vo) throws Exception {		
+		return userMapper.selectUser(vo);
 	}
 
 

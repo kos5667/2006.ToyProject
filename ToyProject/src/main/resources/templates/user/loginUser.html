@@ -1,38 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/default" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <div layout:fragment="content">
-    <script>
-
-    </script>
-            <div class="ui two column middle aligned center aligned grid" style="margin-top: 60%;">
-                <div class="column">
-                    <h2 class="ui teal image header">
-                        <!-- <img src="assets/images/logo.png" class="image"> -->
-                        <div class="content">
-                        Log-in to your account
-                        </div>
-                    </h2>
-                    <form class="ui large form">
-                        <div class="ui stacked segment">
-                            <div class="field">
-                                <div class="ui left icon input">
-                                    <i class="user icon"></i>
-                                    <input type="text" name="email" placeholder="E-mail address">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui left icon input">
-                                    <i class="lock icon"></i>
-                                    <input type="password" name="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="ui fluid large teal submit button">Login</div>
-                        </div>
-                    </form>
-                    <div class="ui message">
-                        New to us? <a href="#">Sign Up</a>
-                    </div>
-                </div>
-            </div>
+    <script th:src="@{/js/popup/naverLogin_implicit-1.0.3.js}"></script>  
+    <script th:src="@{/js/user/loginUser.js}" th:inline="javascript"></script>
+    <body>            
+         <div class="ui two column middle aligned center aligned grid" style="margin-top: 60%;">
+             <div class="column">
+                 <h2 class="ui teal image header">
+                     <!-- <img src="assets/images/logo.png" class="image"> -->
+                     <div class="content">
+                     Log-in to your account
+                     </div>
+                 </h2>
+                 <form class="ui large form">
+                     <div class="ui stacked segment">
+                         <div class="field">
+                             <div class="ui left icon input">
+                                 <i class="user icon"></i>
+                                 <input type="text" name="email" placeholder="E-mail address">
+                             </div>
+                         </div>
+                         <div class="field">
+                             <div class="ui left icon input">
+                                 <i class="lock icon"></i>
+                                 <input type="password" name="password" placeholder="Password">
+                             </div>
+                         </div>
+                         <div class="ui fluid large teal submit button">Login</div>
+                     </div>
+                 </form>
+                 <div id="naver_id_login"></div>
+                 <div class="ui message">
+                     New to us? <a href="user/insertuser.do">Sign Up</a>
+                 </div>
+             </div>
+         </div>
+		<!--
+		타임리프 property 속성 받아오는 방법     
+         <input type="hidden" name="naver_secret_id" id="naver_secret_id" th:utext="${@environment.getProperty('naver.client_id')}">
+         <input type="hidden" name="naver_redirect_uri" id="naver_redirect_uri" th:utext="${@environment.getProperty('naver.redirect_uri')}"> 
+         -->
+    <script th:inline="javascript">
+	    var client_id = [[${@environment.getProperty('naver.client_id')}]]; // 클라이언트 아이디
+	    var redirect_uri = [[${@environment.getProperty('naver.redirect_uri')}]]; // 리다이렉트 아이디
+		
+	    // naver auth 인증에 사용할 객체를 생성한다	    
+	    var naver_id_login = new naver_id_login(client_id, redirect_uri);
+	    // auth 에서 csrf 토큰에 사용하기 위한 값
+	    var state = naver_id_login.getUniqState();
+	    naver_id_login.setButton("white", 2,40);
+	    naver_id_login.setDomain("http://localhost:8080/");
+	    naver_id_login.setState(state);
+	    // naver_id_login.setPopup();
+	    
+	    // 네이버 아이디로 로그인때 사용할 이미지 및 링크를 생성한다
+	    naver_id_login.init_naver_id_login();    	
+	</script>          
+    </body>
 </div>
 </html>

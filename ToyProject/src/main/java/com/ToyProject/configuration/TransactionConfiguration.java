@@ -20,13 +20,14 @@ import org.springframework.transaction.interceptor.RuleBasedTransactionAttribute
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
 @Configuration
+
 public class TransactionConfiguration {
- 
+
     @Autowired
     private PlatformTransactionManager platformTransactionManager;
 
     private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-    
+
     private static final int TX_METHOD_TIMEOUT = 3;
 
     @Bean
@@ -39,7 +40,7 @@ public class TransactionConfiguration {
         //트랜잭션에서 롤백을 수행하는 규칙(Rule). RollbackRuleAttribute 생성자의 인자로 Exception 클래스를 지정,
         //자바에서 모든 예외는 Exception 클래스를 상속받기 때문에 어떠한 예외가 발생하던 무조건 롤백이 수행됨.
         List<RollbackRuleAttribute> rollbackRules = Collections.singletonList(new RollbackRuleAttribute(Exception.class));
-        
+
         //트랜잭션 롤백을 유발하는지 여부를 해결하는 TransactionAttribute 구현
 		RuleBasedTransactionAttribute transactionAttribute = new RuleBasedTransactionAttribute();
         transactionAttribute.setRollbackRules(rollbackRules);
@@ -50,11 +51,11 @@ public class TransactionConfiguration {
         DefaultTransactionAttribute readOnlyAttribute = new DefaultTransactionAttribute(TransactionDefinition.PROPAGATION_REQUIRED);
         readOnlyAttribute.setReadOnly(true);
         readOnlyAttribute.setTimeout(TX_METHOD_TIMEOUT);
-        
+
         String readOnlyTransactionAttributesDefinition = readOnlyAttribute.toString();
 
         String writeTransactionAttributesDefinition = transactionAttribute.toString();
-        
+
         LOGGER.info("Read Only Attributes :: {}", readOnlyTransactionAttributesDefinition);
 
 		LOGGER.info("Write Attributes :: {}", writeTransactionAttributesDefinition);
@@ -72,13 +73,13 @@ public class TransactionConfiguration {
         txAdvice.setTransactionManager(platformTransactionManager);
 		return txAdvice;
     }
-    
+
 	@Bean
 	public Advisor transactionAdviceAdvisor() {
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
 		pointcut.setExpression("execution(* com.ToyProject..service.impl.*Impl.*(..) )");
 		return new DefaultPointcutAdvisor(pointcut, transactionAdvice());
     }
-    
-    
+
+
 }

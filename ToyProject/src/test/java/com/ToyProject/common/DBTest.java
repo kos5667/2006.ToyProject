@@ -12,10 +12,8 @@ public class DBTest {
 
 	@Resource(name = "UserService")
 	UserService userService;
-	
-	@Test
-	public void connTest() throws Exception {
-		userService.selectUser();
-	}
 
 }
+
+
+

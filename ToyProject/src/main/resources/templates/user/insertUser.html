@@ -1,11 +1,90 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/default" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <div layout:fragment="content">
+    <script th:src="@{/css/user/insert.css}"></script>
+	<script th:src="@{/js/popup/postcode.v2.js}"></script>
     <script th:src="@{/js/user/insertUser.js}"></script>
 
     <div class="">
-        회원가입 화면
+	 <h1> 회원가입</h1>
+	 <table boder = "" bgcolor = "#cdfdee" cellspacing = "1" >
+	 <FORM>
+	  <tr>
+	
+	   <td text-align="center">아이디 </td>
+	   <td>
+	   <input type = "text" name="userid" id="userid" />
+	   <input type = "button" value = "중복확인"/>
+	   </td>
+	  </tr>
+	
+	  <tr>
+	   <td> 비밀번호 </td>
+	   <td> <input type = "password" nmae="password" id="password"/>
+	   <span name="conf_pw_span" id="conf_pw_span"></span>
+	   </td>
+	  </tr>
+	
+	  <tr>
+	   <td> 비밀번호 확인 </td>
+	   <td> <input type = "password" name="password_repeat" id="password_repeat" onkeyup="checkEqualsPassword(this)"/></td>
+	  </tr>
+	
+	  <tr>
+	   <td> 성명 </td>
+	   <td> <input type = "text" name="username" id="username"/> </td>
+	  </tr>
+	
+	  <tr>
+	   <td> 이메일 </td>
+	   <td>
+	    <input type = "text" id="email" name="email"/> @ <input type = "text" name="email_domain" id="email_domain"/> &nbsp;&nbsp;
+	    <select id="email_select" name="email_select">
+	     <option value="self_typing">직접입력</option>
+	     <option value="naver.com">naver.com</option>
+	     <option value="google.com">google.com</option>
+	     <option value="daum.net">daum.net</option>
+	    </select>
+	   </td>
+	  </tr>
+	
+	  <tr>
+	   <td> 주소 </td>
+	   <td>
+	    <input type="hidden" id="postcode" name="postcode"/>
+	    <input type = "text" id="addr1" name="addr1" readonly/>
+	    <input type = "button" name="searchZcode" id="searchZcode" onclick="openSearchZCodePopup()" value = "주소찾기"/>
+	   </td>
+	  </tr>
+	  <tr>
+	   <td> 상세주소 </td>
+	   <td>
+	    <input type = "text"  id="addr2" name="addr2"/>
+	   </td>
+	  </tr>
+	
+	  <tr>
+	   <td> 휴대폰 </td>
+	   <td>
+	    <input type = "text" id="phone" name="phone" maxlength="13" placeholder="-없이 입력 해주세요" onkeyup="checkOnlyNumberPress(this)"/>
+	   </td>
+	  </tr>
+	
+	  <tr>
+	   <td>권한 설정</td>
+	   <td>
+	    <select id="auth_selecter" name="auth_selecter">
+	     <option value="10">사용자</option>
+	     <option value="11">관리자</option>
+	     </select>
+	   </td>
+	  </tr>
+	 </FORM>
+	</table>
+	
+	<input type = "submit" id="signupbtn" value = "가입하기"/>
+	<input type = "reset" id="cancelbtn" value = "취소하기" onclick="history.go('-1')"/>
     </div>
-    
+
 </div>
 </html>

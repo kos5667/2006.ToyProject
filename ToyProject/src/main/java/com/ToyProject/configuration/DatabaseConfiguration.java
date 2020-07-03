@@ -22,21 +22,21 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan(basePackages = "com.ToyProject.**.mapper")
 @EnableTransactionManagement //트랜잭션을 활성화
 public class DatabaseConfiguration {
-	
-	@Autowired 
+
+	@Autowired
 	private ApplicationContext applicationContext;
-	
+
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource.hikari")
 	public HikariConfig hikariConfig() {
 		return new HikariConfig();
 	}
-	
+
 	@Bean
 	public DataSource dataSource() {
 		return new HikariDataSource(hikariConfig());
 	}
-	
+
 	@Bean
 	public SqlSessionFactory sqlSesstionFactory(DataSource dataSource)throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
@@ -45,12 +45,11 @@ public class DatabaseConfiguration {
 		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mybatis/mapper/*.xml"));
 		//sqlSessionFactoryBean.setConfiguration(applicationContext.getResource("classpath:/"));
 		return sqlSessionFactoryBean.getObject();
-		
 	}
-	
+
 	@Bean
 	public SqlSessionTemplate sessionTemplate(SqlSessionFactory sqlSessionFactory)throws Exception {
-		return new SqlSessionTemplate(sqlSessionFactory); 
+		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 
 	@Bean
