@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ToyProject.user.mapper.UserMapper">
+  
+  <resultMap id="userMap" type="com.ToyProject.user.vo.UserVO">
+    <result property="userNo" column="USER_NO" jdbcType="NUMERIC"/>
+    <result property="" column="USER_NO" jdbcType="NUMERIC"/>
+    <result property="" column="USER_ID" jdbcType="VARCHAR"/>
+    <result property="" column="PASSWORD" jdbcType="VARCHAR"/>
+    <result property="" column="NAME" jdbcType="VARCHAR"/>
+    <result property="" column="EMAIL" jdbcType="VARCHAR"/>
+    <result property="" column="PHONE" jdbcType="VARCHAR"/>
+    <result property="" column="ZCODE" jdbcType="VARCHAR"/>
+    <result property="" column="ADDR1" jdbcType="VARCHAR"/>
+    <result property="" column="ADDR2" jdbcType="VARCHAR"/>
+    <result property="" column="CRT_DT" jdbcType="DATE"/>
+    <result property="" column="UPD_DT" jdbcType="DATE"/>
+    <result property="" column="USE_YN" jdbcType="CHAR"/>
+    <result property="" column="AUTH_CODE" jdbcType="CHAR"/>
+    <result property="" column="POINT" jdbcType="NUMERIC"/>
+    <result property="" column="GRADE" jdbcType="CHAR"/>
+  </resultMap>
+
+  <insert id="insertUser" parameterType="com.ToyProject.user.vo.UserVO">
+  	INSERT INTO users(
+	  	   USER_ID,
+	  	   PASSWORD,
+	  	   NAME,
+	  	   EMAIL,
+	  	   PHONE,
+	  	   ZCODE,
+	  	   ADDR1,
+	  	   ADDR2,
+	  	   USE_YN,
+	  	   AUTH_CODE,
+	  	   CRT_DT,
+	  	   UPD_DT,
+	  	   GRADE
+	  	   )
+  	VALUES(
+  	       #{userId},
+  	       #{password},
+  	       #{name},
+  	       #{email},
+  	       #{phone},
+  	       #{zcode},
+  	       #{addr1},
+  	       #{addr2},
+  	       #{useYn},
+  	       #{authCode},
+  	       #{crtDt},
+	  	   #{updDt},
+  	       #{grade}
+  	 )
+  	
+  	
+  	
+  </insert>
+
+  <select id="selectUser" parameterType="com.ToyProject.user.vo.UserVO" resultMap="userMap">
+	 SELECT 
+	       USER_NO,
+	 	   USER_ID,
+	  	   PASSWORD,
+	  	   NAME,
+	  	   EMAIL,
+	  	   PHONE,
+	  	   ZCODE,
+	  	   ADDR1,
+	  	   ADDR2,
+	  	   USE_YN,
+	  	   AUTH_CODE,
+	  	   CRT_DT,
+	  	   UPD_DT,
+	  	   GRADE,
+	  	   POINT
+	   FROM users
+	  WHERE USER_ID = #{userId}
+	  <if test ="password!=null and !password.equals('')">
+	  	 AND PASSWORD = #{password}
+	  </if>	  	   
+  </select>
+
+  <!--
+  <select id="selectUserList">
+  </select>
+
+  <update id="updateUser">
+  </update>
+
+  <update id="deleteUser">
+  </update> -->
+  
+</mapper>
