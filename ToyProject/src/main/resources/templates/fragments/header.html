@@ -6,11 +6,17 @@
         
         </div>
         <a class="item" onclick="openSidebar()">
-          <span class="openSidebar">사이드바</span>
+          <span class="openSidebar">openSidebar</span>
         </a>
-        <a class="item">Features</a>
-        <a class="item">Testimonials</a>
-        <a class="item">Sign-in</a>
+        <a class="item">Testimo</a>
+        <a class="item">Testimo</a>
+        <a class="item">Testimo</a>
+        <a th:href="@{product/productList}" class="item" style="color: red;">productList</a>
+        <a th:href="@{user/logout}" class="item" style="color: red;">Logout</a>
+        
+        <a th:href="@{/user/form}" class="item" style="color: red;">Sign-up</a>
+        
+     
       </div>
     </header>
 </html>

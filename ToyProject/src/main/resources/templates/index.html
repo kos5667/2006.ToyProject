@@ -8,18 +8,9 @@ layout:decorator="layout/default"
 >
 <div layout:fragment="content">
     
-    <sec:authorize access="hasRole('ROLE_USER')">
-        This content will only be visible to users who have the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
-    </sec:authorize>    
+
     
-    
-    <div style="border:1px solid red; height: 500px; font-size: 40px; text-align: center; padding:50px">
-        <p>로그인 하고들어오세요. <a th:href="@{/product/productList}">Login</a> 
-        <p>아이디 만들기 <a th:href="@{/create}">Create</a> 
-    </div>
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                This content will only be visible to users who have the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
-            </sec:authorize>
+  
 
             
           

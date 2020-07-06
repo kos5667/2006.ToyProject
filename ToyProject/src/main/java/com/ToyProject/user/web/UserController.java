@@ -55,7 +55,7 @@ public class UserController {
 
 	@RequestMapping(value = "/user/createuser", method = RequestMethod.GET)
 	public void insertUser(TestVo userVO, Model model) {
-		
+		System.out.println(userVO+"////////////////////////////////////////////////");
 		try {
 			userService.insertUser(userVO);
 		} catch (Exception e) {

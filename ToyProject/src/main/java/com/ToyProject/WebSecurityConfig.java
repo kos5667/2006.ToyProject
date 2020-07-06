@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -16,33 +17,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
-				.antMatchers("/", "/home","/user/form","/select").hasAuthority("ROLE_ADMIN")
-				.anyRequest().authenticated()
-				.and()
+			.authorizeRequests() 
+				
+				.antMatchers("/", "home").authenticated() //인증 받은 모두
+				.antMatchers("/a").hasAuthority("ROLE_USER") //특정 권한이 있을때만
+
+				// 전체 허용 ( css나 usercreate)
+				.anyRequest().permitAll();
+		http		
 			.formLogin()
 				.loginPage("/login")
-				.permitAll()
-				.and()
-			.logout()
 				.permitAll();
-	}
-/*
-테스트 코드// user/password로 로그인을 하면 .build해줌 (인메모리 정보)
-========================================================
-	@Bean
-	@Override
-	public UserDetailsService userDetailsService() {
-		UserDetails user =
-			 User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
-				.roles("USER")
-				.build();
+		
+		http		
+			.logout()
+			.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+			.logoutSuccessUrl("/") // 로그아웃 성공시
+			.invalidateHttpSession(true);
+		
 
-		return new InMemoryUserDetailsManager(user);
+				
 	}
-	*/
+
+
+
+
+
+
+
+
 
 	@Bean
 	public PasswordEncoder passwordEncoder(){

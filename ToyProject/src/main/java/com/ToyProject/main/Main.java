@@ -23,6 +23,7 @@ public class Main {
 
 	@GetMapping("/")
 	public String index(){
+		System.out.println("index");
 		return "index";
 	}
 	
