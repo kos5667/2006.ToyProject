@@ -19,9 +19,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests() 
 				
-				.antMatchers("/", "home").authenticated() //인증 받은 모두
-				.antMatchers("/a").hasAuthority("ROLE_USER") //특정 권한이 있을때만
-
+			 	.antMatchers("/").authenticated() //인증 받은 모두
+				
+				.antMatchers("/**").hasAuthority("ROLE_ADMIN") //특정 권한이 있을때만 접속가능한 url들
+		
 				// 전체 허용 ( css나 usercreate)
 				.anyRequest().permitAll();
 		http		

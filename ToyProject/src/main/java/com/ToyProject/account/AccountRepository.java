@@ -24,7 +24,6 @@ public class AccountRepository {
 
         account.setUSER_NO(random.nextInt());
         accounts.put(account.getUsername(), account);
-        
         sqlSession.insert("insertAccount",account);
        
         return account;
@@ -36,18 +35,14 @@ public class AccountRepository {
 
 
     public Account findByEmail(String username) {
-        
+        System.out.println("username 받았고 뱉는건 accounts.get(username)이야.");
         return accounts.get(username);
     }
 
-
-
-	public Account selectAuthUser(Account account) {
-        
-        sqlSession.selectList("selectAccount", account);
-        return account;
-	}
-
+    
+    public Account get(String username) {	
+        return sqlSession.selectOne("getByusername", username);
+    }
 
 
 }

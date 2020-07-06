@@ -17,7 +17,9 @@
   SELECT * FROM USERS WHERE USERNAME=#{username} AND PASSWORD=#{password};
   </select>
 
-
+  <select id="getByusername" parameterType="String" resultType="com.ToyProject.account.Account">
+  SELECT * FROM USERS WHERE USERNAME=#{username};
+  </select>
 
 
 </mapper>

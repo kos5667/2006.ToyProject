@@ -17,7 +17,7 @@ public class AccountController {
     public Account create() {
         
         Account acc= new Account();
-        acc.setUsername("kpkim");
+        acc.setUsername("sapkim");
         acc.setPassword("password");
         
         return accountService.save(acc);

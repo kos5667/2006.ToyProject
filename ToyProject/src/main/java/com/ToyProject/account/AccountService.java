@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.ToyProject.user.mapper.UserMapper;
-import com.ToyProject.user.vo.TestVo;
-import com.mysql.cj.protocol.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,20 +30,21 @@ public class AccountService implements UserDetailsService {
         // Account account = accounts.findByEmail(username);
         System.out.println(username); //kpkim
         Account userVo=new Account();
-        userVo.setUsername(username);
-        userVo.setPassword("password");
-        userVo.setAuthorities(Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
-        System.out.println(userVo); //kpkim이 들어간 객체 
-        
-        //if username이 db에 저장이 되있으면 repository에 저장해라 로직 구현
-        Account buserVo=save(userVo);// encoding해라
-        Account account= accounts.findByEmail(username); //인증 
+        Account account= new Account(); //인증 
+        userVo=accounts.get(username);//에러났다.
+
+        System.out.println(userVo);
+        if(userVo!=null){
+            account.setUSER_NO(userVo.getUSER_NO());
+            account.setUsername(userVo.getUsername());
+            account.setPassword(userVo.getPassword());
+            account.setAuthorities(userVo.getAuthorities());
+        }
+
         System.out.println(account);
         System.out.println(account.getAuthorities());
        
         
-        
-
          UserDetails userDetails = new UserDetails() {
 
             /**
@@ -109,12 +107,7 @@ public class AccountService implements UserDetailsService {
         return accounts.save(acc);
 	}
 
-	public Account selectAuthUser(Account acc) {
-        acc.setUsername("kpkim");
-        acc.setPassword("password");
-        
-        return accounts.selectAuthUser(acc);
-	} 
+
 
 
 
