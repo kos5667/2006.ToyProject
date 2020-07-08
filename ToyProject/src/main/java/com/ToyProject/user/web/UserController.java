@@ -1,7 +1,5 @@
 package com.ToyProject.user.web;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 

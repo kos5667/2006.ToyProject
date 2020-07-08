@@ -23,8 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				
 				.antMatchers("/**").hasAuthority("ROLE_ADMIN") //특정 권한이 있을때만 접속가능한 url들
 		
-				// 전체 허용 ( css나 usercreate)
-				.anyRequest().permitAll();
+				.anyRequest().permitAll();// 전체 허용 ( css나 usercreate)
 		http		
 			.formLogin()
 				.loginPage("/login")

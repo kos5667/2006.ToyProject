@@ -1,7 +1,5 @@
 package com.ToyProject.account;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,23 +26,16 @@ public class AccountService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 레포지토리에 accounts에 데이터가 있으면, 자동적으로 셋팅됨.
         // Account account = accounts.findByEmail(username);
-        System.out.println(username); //kpkim
+        
         Account userVo=new Account();
         Account account= new Account(); //인증 
         userVo=accounts.get(username);//에러났다.
-
-        System.out.println(userVo);
         if(userVo!=null){
             account.setUSER_NO(userVo.getUSER_NO());
             account.setUsername(userVo.getUsername());
             account.setPassword(userVo.getPassword());
             account.setAuthorities(userVo.getAuthorities());
-        }
-
-        System.out.println(account);
-        System.out.println(account.getAuthorities());
-       
-        
+        }        
          UserDetails userDetails = new UserDetails() {
 
             /**
