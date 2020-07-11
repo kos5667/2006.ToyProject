@@ -23,15 +23,15 @@ CREATE TABLE USERS
     `NAME`       VARCHAR(45)    NOT NULL    COMMENT '회원 이름', 
     `EMAIL`      VARCHAR(45)    NOT NULL    COMMENT '회원 이메일', 
     `PHONE`      VARCHAR(45)    NOT NULL    COMMENT '회원 전화번호', 
-    `ZCODE`      VARCHAR(45)    NOT NULL    COMMENT '주소1', 
-    `ADDR1`      VARCHAR(45)    NOT NULL    COMMENT '주소2', 
-    `ADDR2`      VARCHAR(45)    NULL        COMMENT '주소3', 
+    `ZCODE`      VARCHAR(45)    NOT NULL    COMMENT '우편번호', 
+    `ADDR1`      VARCHAR(45)    NOT NULL    COMMENT '주소1', 
+    `ADDR2`      VARCHAR(45)    NULL        COMMENT '주소2', 
     `CRT_DT`     DATETIME       NOT NULL    COMMENT '생성일시', 
     `UPD_DT`     DATETIME       NOT NULL    COMMENT '수정일시', 
-    `USE_YN`     CHAR(1)        NOT NULL    COMMENT '사용여부', 
-    `AUTH_CODE`  INT            NOT NULL    COMMENT '권한(유저, 어드민)', 
+    `USE_YN`     CHAR(1)        NOT NULL    COMMENT '탈퇴여부', 
+    `AUTH_CODE`  CHAR(1)        NOT NULL    COMMENT '권한(user = 1, admin = 1)', 
     `POINT`      INT            NOT NULL    COMMENT '포인트 보유금액', 
-    `GRADE`      INT            NOT NULL    COMMENT '회원등급', 
+    `GRADE`      CHAR(1)        NOT NULL    COMMENT '회원등급', 
     PRIMARY KEY (USER_NO)
 );
 
@@ -244,4 +244,37 @@ ALTER TABLE FUNDING_USERS
 ALTER TABLE FUNDING_USERS
     ADD CONSTRAINT FK_FUNDING_USERS_USER_NO_USERS_USER_NO FOREIGN KEY (USER_NO)
         REFERENCES USERS (USER_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+--20200613 굿즈 상품연결 관련 테이블 추가 LJI
+-- product Table Create SQL
+CREATE TABLE goods
+(
+    `GOODS_NO`        INT            NOT NULL    AUTO_INCREMENT COMMENT '굿즈일련번호', 
+    `NAME`            VARCHAR(45)    NOT NULL    COMMENT '굿즈이름', 
+    `PRICE`           VARCHAR(45)    NOT NULL    COMMENT '굿즈가격', 
+    `STATUS`          CHAR(1)        NOT NULL    COMMENT '상태', 
+    `CNT`             INT            NOT NULL    COMMENT '수량', 
+    `THUMBNAIL_PATH`  VARCHAR(45)    NOT NULL    COMMENT '썸네일', 
+    `IMAGE_PATH`      VARCHAR(45)    NOT NULL    COMMENT '상세정보이미지', 
+    `CRT_DT`          DATETIME       NOT NULL    COMMENT '생성일자', 
+    PRIMARY KEY (GOODS_NO)
+);
+
+
+-- product Table Create SQL
+CREATE TABLE pro_goods
+(
+    `PRODUCT_NO`  INT    NOT NULL    COMMENT '상품일련번호', 
+    `GOODS_NO`    INT    NOT NULL    COMMENT '굿즈일련번호'
+);
+
+ALTER TABLE pro_goods
+    ADD CONSTRAINT FK_pro_goods_GOODS_NO_goods_GOODS_NO FOREIGN KEY (GOODS_NO)
+        REFERENCES goods (GOODS_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE pro_goods
+    ADD CONSTRAINT FK_pro_goods_PRODUCT_NO_product_PRODUCT_NO FOREIGN KEY (PRODUCT_NO)
+        REFERENCES product (PRODUCT_NO) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 
