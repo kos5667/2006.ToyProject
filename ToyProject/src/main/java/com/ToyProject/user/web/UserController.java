@@ -14,6 +14,7 @@ public class UserController {
 
 @RequestMapping(value="/user/*")
 public class UserController {
+	
 	//Field
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	
