@@ -8,7 +8,7 @@ import com.ToyProject.user.service.UserService;
 
 
 @Controller
-public class UserController {
+public class UserController { 
 
 	@Resource(name = "UserService")
 	UserService userService;
