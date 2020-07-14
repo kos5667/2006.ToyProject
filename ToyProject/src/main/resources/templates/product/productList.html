@@ -40,14 +40,14 @@
             <span th:text="${session.userId}" style="color: brown; font-size: 20px;" ></span> <span style="font-size: 20px;">님 안녕하세요^^</span> 
             
             <div class="ui card" style="margin:30px;">
-                <div class="content">
+                <div class="content"> <!--내용-->
                   <div class="right floated meta">14h</div>
                   <img class="ui avatar image" style="width: 200px; height:200px"src="/images/a.jpg"> Elliot
                 </div>
-                <div class="image">
+                <div class="image"><!--이미지-->
                   <img>
                 </div>
-                <div class="content">
+                <div class="content"><!--내용-->
                   <span class="right floated">
                     <i class="heart outline like icon"></i>
                     17 likes
@@ -75,9 +75,7 @@
                 $('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');
             })
 
-            $('.logout').click(function(){
-               alert("아직 연결안됨");
-            })
+         
 
 
         </script>

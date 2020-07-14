@@ -25,14 +25,16 @@ public class ProductController {
     //화면이동
     @RequestMapping(value= "/product/productList", method = RequestMethod.GET)
 	public String getProductList(Model model, HttpSession session){
+		
 		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
-		System.out.println(name);
-		
-		
 		session.setAttribute("userId", name);
-
-		
 		return "/product/productList";
 	}
+
+
+
+
+
+	
 }
